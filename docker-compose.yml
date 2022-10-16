@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+    backend:
+        image: '${DOCKER_IMAGE_BACKEND?Variable not set}:${TAG-latest}'
+        build: 
+            context: ./backend
+            dockerfile: backend.dockerfile
+        volumes:
+            - ./backend:/app
+        ports:
+            - 5000:5000
+    
+    frontend:
+        image: '${DOCKER_IMAGE_FRONTEND?Variable not set}:${TAG-latest}'
+        build: ./frontend
+        volumes:
+            - ./frontend:/app
+        ports:
+            - 4200:80
+        depends_on: 
+            - backend
