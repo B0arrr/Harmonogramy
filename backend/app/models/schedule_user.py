@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from app.db.base_class import Base
 
 
-class ScheduleEmployee(Base):
+class ScheduleUser(Base):
     schedule_id = Column(Integer, ForeignKey('schedule.id'), primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
     shift_start = Column(DateTime)
