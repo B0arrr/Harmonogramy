@@ -1,6 +1,6 @@
 from datetime import date
 
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class UserBase(BaseModel):
@@ -30,7 +30,7 @@ class UserInDBBase(UserBase):
     id: int
     first_name: str
     last_name: str
-    email: str
+    email: EmailStr
     password: str
     is_active: bool
     is_superuser: bool
