@@ -2,7 +2,7 @@ from typing import List
 
 from sqlalchemy.orm import Session
 
-from app import crud, schemas
+from app import crud
 from app.crud.base import CRUDBase
 from app.models import User
 from app.schemas import UserCreate, UserUpdate

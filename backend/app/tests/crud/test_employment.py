@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 
 from app import crud, models, schemas
 from app.schemas import EmploymentCreate
-from app.tests.utils.company import create_random_company
 from app.tests.utils.employment import create_random_employment
 from app.tests.utils.utils import random_lower_string, random_int
 
