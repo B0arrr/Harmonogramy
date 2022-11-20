@@ -25,4 +25,4 @@ class User(Base):
     position_id = Column(Integer, ForeignKey('position.id'))
     position = relationship("Position", back_populates="user")
 
-    schedule = relationship("Schedule_Employee", back_populates="user")
+    schedule = relationship("ScheduleUser", back_populates="user")

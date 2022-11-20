@@ -8,15 +8,10 @@ from app.schemas import CompanyCreate, CompanyUpdate
 
 
 class CRUDCompany(CRUDBase[Company, CompanyCreate, CompanyUpdate]):
-    def get_id(
+    def get_by_company(
             self, db: Session, *, company: str
-    ) -> int:
-        return db.query(self.model).filter(Company.company == company).first().id
-
-    def get_company_by_id(
-            self, db: Session, *, id: int
-    ) -> str:
-        return db.query(self.model).filter(Company.id == id).first().company
+    ) -> Company:
+        return db.query(self.model).filter(Company.company == company).first()
 
 
 company = CRUDCompany(Company)

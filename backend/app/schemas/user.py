@@ -30,7 +30,7 @@ class UserInDBBase(UserBase):
     id: int
     first_name: str
     last_name: str
-    email: EmailStr
+    email: str
     password: str
     is_active: bool
     is_superuser: bool

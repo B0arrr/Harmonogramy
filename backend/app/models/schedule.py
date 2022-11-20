@@ -9,4 +9,4 @@ class Schedule(Base):
     start_day = Column(Date, index=True)
     day_off = Column(Boolean, default=False)
 
-    user = relationship("Schedule_Employee", back_populates="schedule")
+    user = relationship("ScheduleUser", back_populates="schedule")
