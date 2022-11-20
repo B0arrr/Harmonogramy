@@ -46,7 +46,7 @@ def get_company_by_id(
     return company
 
 
-@router.get("/get_company_id/{company}", response_model=schemas.Company)
+@router.get("/get_company_id/{company}")
 def get_company_id(
         *,
         db: Session = Depends(deps.get_db),

@@ -6,15 +6,10 @@ from app.schemas import EmploymentCreate, EmploymentUpdate
 
 
 class CRUDEmployment(CRUDBase[Employment, EmploymentCreate, EmploymentUpdate]):
-    def get_id(
+    def get_by_employment(
             self, db: Session, *, employment: str
-    ) -> int:
-        return db.query(self.model).filter(Employment.employment == employment).first().id
-
-    def get_employment_by_id(
-            self, db: Session, *, id: int
-    ) -> str:
-        return db.query(self.model).filter(Employment.id == id).first().employment
+    ) -> Employment:
+        return db.query(self.model).filter(Employment.employment == employment).first()
 
 
 employment = CRUDEmployment(Employment)

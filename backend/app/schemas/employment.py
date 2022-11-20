@@ -18,8 +18,8 @@ class EmploymentUpdate(EmploymentBase):
 class EmploymentInDBBase(EmploymentBase):
     id: int
     employment: str
-    hours_per_week: int
-    hours_per_day: int
+    max_hours_per_week: int
+    max_hours_per_day: int
 
     class Config:
         orm_mode = True
