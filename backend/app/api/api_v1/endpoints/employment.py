@@ -86,7 +86,7 @@ def update_employment_by_id(
     Update employment by id
     """
     employment_in_db = crud.employment.get(db, id=id)
-    if not employment:
+    if not employment_in_db:
         raise HTTPException(
             status_code=404,
             detail="Employment don't exists"
@@ -103,6 +103,9 @@ def delete_employment(
         db: Session = Depends(deps.get_db),
         id: int
 ) -> Any:
+    """
+    Delete employment
+    """
     employment = crud.employment.get(db, id=id)
     if not employment:
         raise HTTPException(

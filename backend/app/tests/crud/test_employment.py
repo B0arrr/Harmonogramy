@@ -30,7 +30,7 @@ def test_get_all_employments(db: Session):
     employments = crud.employment.get_all(db)
     employments_in_db = db.query(models.Employment).all()
     assert employments
-    assert len(employments_in_db) == len(employments_in_db)
+    assert len(employments_in_db) == len(employments)
     assert employments == employments_in_db
 
 

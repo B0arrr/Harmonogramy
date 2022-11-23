@@ -6,15 +6,10 @@ from app.schemas import PositionCreate, PositionUpdate
 
 
 class CRUDPosition(CRUDBase[Position, PositionCreate, PositionUpdate]):
-    def get_id(
+    def get_by_position(
             self, db: Session, *, position: str
-    ) -> int:
-        return db.query(self.model).filter(Position.position == position).first().id
-
-    def get_position_by_id(
-            self, db: Session, id: int
-    ) -> str:
-        return db.query(self.model).filter(Position.id == id).position
+    ) -> Position:
+        return db.query(self.model).filter(Position.position == position).first()
 
 
 position = CRUDPosition(Position)

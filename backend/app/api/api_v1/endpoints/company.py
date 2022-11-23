@@ -83,7 +83,7 @@ def update_company_by_id(
         company: str
 ) -> Any:
     company_in_db = crud.company.get(db, id=id)
-    if not company:
+    if not company_in_db:
         raise HTTPException(
             status_code=404,
             detail="Company don't exists"
@@ -100,6 +100,9 @@ def delete_company(
         db: Session = Depends(deps.get_db),
         id: int
 ) -> Any:
+    """
+    Delete company
+    """
     company = crud.company.get(db, id=id)
     if not company:
         raise HTTPException(
