@@ -28,7 +28,7 @@ def create_position(
     return crud.position.create(db, obj_in=position_in)
 
 
-@router.get("/get_position_by_id", response_model=schemas.Position)
+@router.get("/get_position_by_id/{id}", response_model=schemas.Position)
 def get_position_by_id(
         *,
         db: Session = Depends(deps.get_db),
