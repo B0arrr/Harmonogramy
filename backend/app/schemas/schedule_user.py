@@ -10,6 +10,11 @@ class ScheduleUserBase(BaseModel):
     shift_end: datetime
 
 
+class ScheduleUserIn(BaseModel):
+    shift_start: datetime
+    shift_end: datetime
+
+
 class ScheduleUserCreate(ScheduleUserBase):
     pass
 
