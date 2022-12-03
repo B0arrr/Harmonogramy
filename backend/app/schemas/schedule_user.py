@@ -24,6 +24,7 @@ class ScheduleUserUpdate(ScheduleUserBase):
 
 
 class ScheduleUserInDBBase(ScheduleUserBase):
+    id: int
     schedule_id: int
     user_id: int
     shift_start: datetime

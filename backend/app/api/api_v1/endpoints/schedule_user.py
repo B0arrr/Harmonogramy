@@ -19,6 +19,18 @@ def create_schedule_user(
     """
     Create schedule for user
     """
+    schedule = crud.schedule.get(db, id=schedule_in.schedule_id)
+    if not schedule:
+        raise HTTPException(
+            status_code=404,
+            detail="Schedule don't exists"
+        )
+    user = crud.user.get(db, id=schedule_in.user_id)
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="User don't exists"
+        )
     schedule_user = crud.schedule_user \
         .get_by_user_id_and_shift_start(db, user_id=schedule_in.user_id, shift_start=schedule_in.shift_start)
     if schedule_user:
@@ -85,4 +97,4 @@ def delete_schedule_user(
             status_code=404,
             detail="User schedule don't exists"
         )
-    return crud.schedule_user.remove(db, user_id=user_id, schedule_id=schedule_id)
+    return crud.schedule_user.remove(db, id=schedule_user_in_db.id)

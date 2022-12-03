@@ -4,12 +4,12 @@ from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
 from app import crud, models, schemas
-from app.tests.utils.schedule import get_last_day, rand_bool, create_random_schedule
+from app.tests.utils.schedule import get_last_day, random_bool, create_random_schedule
 
 
 def test_create_schedule(db: Session):
     start_day = get_last_day(db) + timedelta(days=1)
-    day_off = rand_bool()
+    day_off = random_bool()
     schedule_in_db = crud.schedule.create(db, start_day=start_day, day_off=day_off)
     assert schedule_in_db
     assert start_day == schedule_in_db.start_day
