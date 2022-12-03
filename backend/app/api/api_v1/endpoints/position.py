@@ -19,7 +19,7 @@ def create_position(
     """
     Create position
     """
-    position = crud.position.get_by_position(db, obj_in=position_in)
+    position = crud.position.get_by_position(db, position=position_in.position)
     if position:
         raise HTTPException(
             status_code=400,
