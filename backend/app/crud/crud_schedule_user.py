@@ -21,11 +21,13 @@ class CRUDScheduleUser(CRUDBase[ScheduleUser, ScheduleUserCreate, ScheduleUserUp
         db.add(schedule_user)
         db.commit()
         db.refresh(schedule_user)
+        return schedule_user
 
     def get_by_user_id_and_shift_start(
             self, db: Session, *, user_id: int, shift_start: datetime
     ) -> ScheduleUser:
-        db.query(ScheduleUser).filter(ScheduleUser.user_id == user_id, ScheduleUser.shift_start == shift_start).first()
+        return db.query(ScheduleUser).filter(ScheduleUser.user_id == user_id,
+                                             ScheduleUser.shift_start == shift_start).first()
 
     def get_all_user_schedules(
             self, db: Session, *, user_id: int
@@ -42,18 +44,9 @@ class CRUDScheduleUser(CRUDBase[ScheduleUser, ScheduleUserCreate, ScheduleUserUp
 
     def get_by_ids(
             self, db: Session, *, schedule_id: int, user_id: int
-    ) -> ScheduleUser:
+    ) -> List[ScheduleUser]:
         return db.query(self.model) \
-            .filter(ScheduleUser.schedule_id == schedule_id, ScheduleUser.user_id == user_id).first()
-
-    def remove(
-            self, db: Session, *, user_id: int, schedule_id: int
-    ) -> ScheduleUser:
-        obj = db.query(ScheduleUser) \
-            .filter(ScheduleUser.schedule_id == schedule_id, ScheduleUser.user_id == user_id).first()
-        db.delete(obj)
-        db.commit()
-        return obj
+            .filter(ScheduleUser.schedule_id == schedule_id, ScheduleUser.user_id == user_id).all()
 
 
 schedule_user = CRUDScheduleUser(ScheduleUser)
