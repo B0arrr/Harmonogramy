@@ -29,7 +29,7 @@ def test_get_company_by_id(
     )
     assert response.status_code == 200
     content = response.json()
-    assert "id" in content
+    assert content["id"] == company.id
     assert content["company"] == company.company
 
 

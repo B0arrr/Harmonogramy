@@ -46,7 +46,7 @@ def get_employment_by_id(
     return employment
 
 
-@router.get("/get_employment_id/{company}")
+@router.get("/get_employment_id/{employment}")
 def get_employment_id(
         *,
         db: Session = Depends(deps.get_db),
