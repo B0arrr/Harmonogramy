@@ -37,7 +37,7 @@ def get_position_by_id(
     """
     Get position by id
     """
-    position = crud.employment.get(db, id=id)
+    position = crud.position.get(db, id=id)
     if not position:
         raise HTTPException(
             status_code=404,
@@ -92,7 +92,7 @@ def update_position_by_id(
             detail="Position don't exists"
         )
     position_to_update = jsonable_encoder(position_in_db)
-    position_updated = schemas.EmploymentUpdate(**position_to_update)
+    position_updated = schemas.PositionUpdate(**position_to_update)
     position_updated.position = position
     return crud.employment.update(db, db_obj=position_in_db, obj_in=position_updated)
 
