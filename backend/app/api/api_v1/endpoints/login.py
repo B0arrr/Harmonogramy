@@ -51,8 +51,7 @@ def recover_password(email: str, db: Session = Depends(deps.get_db)) -> Any:
     """
     Password Recovery
     """
-    user = crud.user.get_by_email(db, email=email)
-
+    user = crud.user.get_user_by_email(db, email=email)
     if not user:
         raise HTTPException(
             status_code=404,
@@ -65,7 +64,7 @@ def recover_password(email: str, db: Session = Depends(deps.get_db)) -> Any:
     return {"msg": "Password recovery email sent"}
 
 
-@router.post("/reset-password/", response_model=schemas.Msg)
+@router.post("/reset-password", response_model=schemas.Msg)
 def reset_password(
         token: str = Body(...),
         new_password: str = Body(...),
@@ -77,7 +76,7 @@ def reset_password(
     email = verify_password_reset_token(token)
     if not email:
         raise HTTPException(status_code=400, detail="Invalid token")
-    user = crud.user.get_by_email(db, email=email)
+    user = crud.user.get_user_by_email(db, email=email)
     if not user:
         raise HTTPException(
             status_code=404,
@@ -85,8 +84,7 @@ def reset_password(
         )
     elif not crud.user.is_active(user):
         raise HTTPException(status_code=400, detail="Inactive user")
-    hashed_password = get_password_hash(new_password)
-    user.hashed_password = hashed_password
+    user.password = get_password_hash(new_password)
     db.add(user)
     db.commit()
     return {"msg": "Password updated successfully"}
