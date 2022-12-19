@@ -61,7 +61,7 @@ def get_user_schedules(
     return crud.schedule_user.get_user_schedules(db, user_id=user_id, start_date=start_date, end_date=end_date)
 
 
-@router.put("/update_schedule_for_user/{user_id}/schedule_id/{schedule_id}/", response_model=schemas.ScheduleUser)
+@router.put("/update_schedule_for_user/{user_id}/schedule_id/{schedule_id}", response_model=List[schemas.ScheduleUser])
 def update_schedule_for_user(
         *,
         db: Session = Depends(deps.get_db),
@@ -81,10 +81,12 @@ def update_schedule_for_user(
         shift_start=schedule_user_in.shift_start,
         shift_end=schedule_user_in.shift_end
     )
-    return crud.schedule_user.update(db, db_obj=schedule_user_in_db, obj_in=schedule_user_updated)
+    return [crud.schedule_user.update(db, db_obj=schedule_user, obj_in=schedule_user_updated) for schedule_user in
+            schedule_user_in_db]
 
 
-@router.delete("/delete_schedule_user/user_id/{user_id}/schedule_id/{schedule_id}", response_model=schemas.ScheduleUser)
+@router.delete("/delete_schedule_user/user_id/{user_id}/schedule_id/{schedule_id}",
+               response_model=List[schemas.ScheduleUser])
 def delete_schedule_user(
         *,
         db: Session = Depends(deps.get_db),
@@ -97,4 +99,4 @@ def delete_schedule_user(
             status_code=404,
             detail="User schedule don't exists"
         )
-    return crud.schedule_user.remove(db, id=schedule_user_in_db.id)
+    return [crud.schedule_user.remove(db, id=schedule_user.id) for schedule_user in schedule_user_in_db]
