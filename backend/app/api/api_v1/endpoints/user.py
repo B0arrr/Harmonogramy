@@ -47,7 +47,7 @@ def get_user_by_id(
     return user
 
 
-@router.get("get_user_by_email/{email}", response_model=schemas.User)
+@router.get("/get_user_by_email/{email}", response_model=schemas.User)
 def get_user_by_email(
         *,
         db: Session = Depends(deps.get_db),
@@ -84,7 +84,7 @@ def get_user_id(
 
 
 @router.get("/get_all_users_from_company_by_id/{company_id}", response_model=List[schemas.User])
-def get_all_users_from_company(
+def get_all_users_from_company_by_id(
         *,
         db: Session = Depends(deps.get_db),
         company_id: int
@@ -230,7 +230,7 @@ def update_user_password(
             detail="User don't exists"
         )
     user_updated = schemas.UserUpdatePassword(
-        password=user_update.password
+        password=get_password_hash(user_update.password)
     )
     return crud.user.update(db, db_obj=user_in_db, obj_in=user_updated)
 
