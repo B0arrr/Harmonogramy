@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Optional
 
 from pydantic import BaseModel, EmailStr
 
@@ -12,7 +13,7 @@ class UserBase(BaseModel):
     is_superuser: bool
     is_employed: bool
     date_of_employment: date
-    date_of_fired: date
+    date_of_fired: Optional[date]
     company_id: int
     employment_id: int
     position_id: int
@@ -30,7 +31,7 @@ class UserUpdate(BaseModel):
     is_superuser: bool
     is_employed: bool
     date_of_employment: date
-    date_of_fired: date
+    date_of_fired: Optional[date]
     company_id: int
     employment_id: int
     position_id: int
@@ -50,7 +51,7 @@ class UserInDBBase(UserBase):
     is_superuser: bool
     is_employed: bool
     date_of_employment: date
-    date_of_fired: date
+    date_of_fired: Optional[date]
     company_id: int
     employment_id: int
     position_id: int

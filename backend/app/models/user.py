@@ -14,7 +14,7 @@ class User(Base):
     is_superuser = Column(Boolean, default=False)
     is_employed = Column(Boolean, default=True)
     date_of_employment = Column(Date)
-    date_of_fired = Column(Date)
+    date_of_fired = Column(Date, nullable=True)
 
     company_id = Column(Integer, ForeignKey('company.id'))
     company = relationship("Company", back_populates="user")
