@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     SERVER_HOST: AnyHttpUrl = "http://localhost:8000/api"
 
     API_V1_STR: str = "/api"
-    SQLALCHEMY_DATABASE_URI: str = "postgresql://postgres:mysecretpassword@localhost:5050/app"
+    SQLALCHEMY_DATABASE_URI: str = "postgresql://postgres:mysecretpassword@db:5432/app"
 
     SECRET_KEY: str = secrets.token_urlsafe(32)
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
