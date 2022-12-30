@@ -7,9 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "npx eslint \"src/**/*.{js,jsx,ts,tsx,html,css,scss}\" --quiet",
-    "lint:fix": "npx eslint \"src/**/*.{js,jsx,ts,tsx,html,css,scss}\" --quiet --fix",
-    "format": "npx prettier \"src/**/*.{js,jsx,ts,tsx,html,css,scss}\" --write",
+    "coverage": "ng test --no-watch --code-coverage",
+    "lint": "npx eslint \"src/**/*.{js,jsx,ts,tsx,html}\" --quiet",
+    "lint:fix": "npx eslint \"src/**/*.{js,jsx,ts,tsx,html}\" --quiet --fix",
+    "format": "npx prettier \"src/**/*.{js,jsx,ts,tsx,html}\" --write",
     "cleanup": "npm run lint:fix && npm run format"
   },
   "private": true,

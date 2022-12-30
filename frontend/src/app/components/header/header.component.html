@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/home">Navbar</a>
+  <a class="navbar-brand" routerLink="/home">{{ title }}</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -17,8 +17,11 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
+      <li class="nav-item d-flex">
+        <a class="nav-link" routerLink="/account">Login</a>
+        <button class="btn btn-link nav-item nav-link" (click)="logout()">
+          Logout
+        </button>
       </li>
     </ul>
   </div>

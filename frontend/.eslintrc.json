@@ -44,10 +44,29 @@
             "ignoreCase": false,
             "ignoreDeclarationSort": false,
             "ignoreMemberSort": false,
-            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+            "memberSyntaxSortOrder": [
+              "none",
+              "all",
+              "multiple",
+              "single"
+            ],
             "allowSeparatedGroups": false
           }
+        ],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "vars": "local",
+            "args": "after-used",
+            "ignoreRestSiblings": false
+          }
         ]
+      },
+      "globals": {
+        "localStorage": true,
+        "setTimeout": true,
+        "console": true
       }
     },
     {
