@@ -75,7 +75,8 @@ def get_all_companies(
     return crud.company.get_all(db)
 
 
-@router.put("/update_company_by_id/{id}/company/{company}", response_model=schemas.Company)
+@router.put("/update_company_by_id/{id}/company/{company}",
+            response_model=schemas.Company)
 def update_company_by_id(
         *,
         db: Session = Depends(deps.get_db),
@@ -91,7 +92,9 @@ def update_company_by_id(
     company_to_update = jsonable_encoder(company_in_db)
     company_updated = schemas.CompanyUpdate(**company_to_update)
     company_updated.company = company
-    return crud.company.update(db, db_obj=company_in_db, obj_in=company_updated)
+    return crud.company.update(db,
+                               db_obj=company_in_db,
+                               obj_in=company_updated)
 
 
 @router.delete("/delete_company/{id}", response_model=schemas.Company)

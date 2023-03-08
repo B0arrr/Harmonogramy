@@ -3,7 +3,6 @@ from typing import Dict
 from fastapi.testclient import TestClient
 
 from app.core.config import settings
-from app.utils import generate_password_reset_token
 
 
 def test_access_token(
@@ -13,7 +12,8 @@ def test_access_token(
         "username": settings.FIRST_SUPERUSER,
         "password": settings.FIRST_SUPERUSER_PASSWORD,
     }
-    result = client.post(f"{settings.API_V1_STR}/login/access-token", data=login_data)
+    result = client.post(f"{settings.API_V1_STR}/login/access-token",
+                         data=login_data)
     assert result.status_code == 200
     tokens = result.json()
     assert "access_token" in tokens
@@ -24,12 +24,12 @@ def test_use_access_token(
         client: TestClient, superuser_token_headers: Dict[str, str]
 ) -> None:
     result = client.post(
-        f"{settings.API_V1_STR}/login/test-token", headers=superuser_token_headers,
+        f"{settings.API_V1_STR}/login/test-token",
+        headers=superuser_token_headers,
     )
     assert result.status_code == 200
     content = result.json()
     assert "email" in content
-
 
 # def test_password_recovery(
 #         client: TestClient

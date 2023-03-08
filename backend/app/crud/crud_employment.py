@@ -9,7 +9,9 @@ class CRUDEmployment(CRUDBase[Employment, EmploymentCreate, EmploymentUpdate]):
     def get_by_employment(
             self, db: Session, *, employment: str
     ) -> Employment:
-        return db.query(self.model).filter(Employment.employment == employment).first()
+        return db.query(self.model) \
+            .filter(Employment.employment == employment) \
+            .first()
 
 
 employment = CRUDEmployment(Employment)

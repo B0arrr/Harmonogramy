@@ -22,12 +22,17 @@ class CRUDSchedule(CRUDBase[Schedule, ScheduleCreate, ScheduleUpdate]):
     ) -> int:
         return db \
             .query(self.model) \
-            .filter(Schedule.start_day == start_day, Schedule.day_off == day_off).first().id
+            .filter(Schedule.start_day == start_day,
+                    Schedule.day_off == day_off) \
+            .first() \
+            .id
 
     def get_by_start_day(
             self, db: Session, *, start_day: date
     ) -> Schedule:
-        return db.query(self.model).filter(Schedule.start_day == start_day).first()
+        return db.query(self.model) \
+            .filter(Schedule.start_day == start_day) \
+            .first()
 
 
 schedule = CRUDSchedule(Schedule)

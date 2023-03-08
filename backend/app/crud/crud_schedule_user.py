@@ -8,7 +8,10 @@ from app.models import ScheduleUser
 from app.schemas import ScheduleUserCreate, ScheduleUserUpdate
 
 
-class CRUDScheduleUser(CRUDBase[ScheduleUser, ScheduleUserCreate, ScheduleUserUpdate]):
+class CRUDScheduleUser(CRUDBase[
+                           ScheduleUser,
+                           ScheduleUserCreate,
+                           ScheduleUserUpdate]):
     def create(
             self, db: Session, *, obj_in: ScheduleUserCreate
     ) -> ScheduleUser:
@@ -26,16 +29,25 @@ class CRUDScheduleUser(CRUDBase[ScheduleUser, ScheduleUserCreate, ScheduleUserUp
     def get_by_user_id_and_shift_start(
             self, db: Session, *, user_id: int, shift_start: datetime
     ) -> ScheduleUser:
-        return db.query(ScheduleUser).filter(ScheduleUser.user_id == user_id,
-                                             ScheduleUser.shift_start == shift_start).first()
+        return db.query(ScheduleUser) \
+            .filter(ScheduleUser.user_id == user_id,
+                    ScheduleUser.shift_start == shift_start) \
+            .first()
 
     def get_all_user_schedules(
             self, db: Session, *, user_id: int
     ) -> List[ScheduleUser]:
-        return db.query(ScheduleUser).filter(ScheduleUser.user_id == user_id).all()
+        return db.query(ScheduleUser) \
+            .filter(ScheduleUser.user_id == user_id) \
+            .all()
 
     def get_user_schedules(
-            self, db: Session, *, user_id: int, start_date: datetime, end_date: datetime
+            self,
+            db: Session,
+            *,
+            user_id: int,
+            start_date: datetime,
+            end_date: datetime
     ) -> List[ScheduleUser]:
         return db.query(ScheduleUser) \
             .filter(ScheduleUser.user_id == user_id,
@@ -46,7 +58,9 @@ class CRUDScheduleUser(CRUDBase[ScheduleUser, ScheduleUserCreate, ScheduleUserUp
             self, db: Session, *, schedule_id: int, user_id: int
     ) -> List[ScheduleUser]:
         return db.query(self.model) \
-            .filter(ScheduleUser.schedule_id == schedule_id, ScheduleUser.user_id == user_id).all()
+            .filter(ScheduleUser.schedule_id == schedule_id,
+                    ScheduleUser.user_id == user_id) \
+            .all()
 
 
 schedule_user = CRUDScheduleUser(ScheduleUser)

@@ -19,7 +19,8 @@ def create_employment(
     """
     Create employment
     """
-    employment = crud.employment.get_by_employment(db, employment=employment_in.employment)
+    employment = crud.employment \
+        .get_by_employment(db, employment=employment_in.employment)
     if employment:
         raise HTTPException(
             status_code=400,
@@ -75,7 +76,8 @@ def get_all_employments(
     return crud.employment.get_all(db)
 
 
-@router.put("/update_employment_by_id/{id}/employment/{employment}", response_model=schemas.Employment)
+@router.put("/update_employment_by_id/{id}/employment/{employment}",
+            response_model=schemas.Employment)
 def update_employment_by_id(
         *,
         db: Session = Depends(deps.get_db),
@@ -94,7 +96,9 @@ def update_employment_by_id(
     employment_to_update = jsonable_encoder(employment_in_db)
     employment_updated = schemas.EmploymentUpdate(**employment_to_update)
     employment_updated.employment = employment
-    return crud.employment.update(db, db_obj=employment_in_db, obj_in=employment_updated)
+    return crud.employment.update(db,
+                                  db_obj=employment_in_db,
+                                  obj_in=employment_updated)
 
 
 @router.delete("/delete_employment/{id}", response_model=schemas.Employment)

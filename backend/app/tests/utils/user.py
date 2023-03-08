@@ -3,8 +3,9 @@ from datetime import date, timedelta
 from sqlalchemy.orm import Session
 
 from app import crud, schemas
-from app.tests.utils.utils import random_lower_string, random_email, random_password, random_bool, random_int, \
-    random_position, random_employment, random_company
+from app.tests.utils.utils import random_lower_string, random_email, \
+    random_password, random_bool, random_int, random_position, \
+    random_employment, random_company
 
 
 def create_random_user(db: Session):

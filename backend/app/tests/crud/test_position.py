@@ -36,7 +36,8 @@ def test_update_position(db: Session):
     position_to_update = jsonable_encoder(position_new)
     position_updated = schemas.PositionUpdate(**position_to_update)
     position_updated.position = position_name
-    position_updated_in_db = crud.employment.update(db, db_obj=position_new, obj_in=position_updated)
+    position_updated_in_db = crud.employment \
+        .update(db, db_obj=position_new, obj_in=position_updated)
     assert position_updated_in_db
     assert position_updated_in_db.position == position_updated.position
 

@@ -16,7 +16,9 @@ def test_create_employment(
         "max_hours_per_day": 8
     }
     response = client.post(
-        f"{settings.API_V1_STR}/employment/create_employment", headers=superuser_token_headers, json=data
+        f"{settings.API_V1_STR}/employment/create_employment",
+        headers=superuser_token_headers,
+        json=data
     )
     assert response.status_code == 200
     content = response.json()
@@ -31,7 +33,9 @@ def test_get_employment_by_id(
 ) -> None:
     employment = create_random_employment(db)
     response = client.get(
-        f"{settings.API_V1_STR}/employment/get_employment_by_id/{employment.id}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/employment/get_employment_by_id/"
+        f"{employment.id}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -46,7 +50,9 @@ def test_get_employment_id(
 ) -> None:
     employment = create_random_employment(db)
     response = client.get(
-        f"{settings.API_V1_STR}/employment/get_employment_id/{employment.employment}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/employment/get_employment_id/"
+        f"{employment.employment}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -58,7 +64,8 @@ def test_get_all_employments(
 ) -> None:
     employments = crud.employment.get_all(db)
     response = client.get(
-        f"{settings.API_V1_STR}/employment/get_all_employments", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/employment/get_all_employments",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -71,7 +78,8 @@ def test_update_employment_by_id(
     employment = create_random_employment(db)
     employment_name = random_lower_string()
     response = client.put(
-        f"{settings.API_V1_STR}/employment/update_employment_by_id/{employment.id}/employment/{employment_name}",
+        f"{settings.API_V1_STR}/employment/update_employment_by_id/"
+        f"{employment.id}/employment/{employment_name}",
         headers=superuser_token_headers
     )
     assert response.status_code == 200

@@ -75,7 +75,8 @@ def get_all_positions(
     return crud.position.get_all(db)
 
 
-@router.put("/update_position_by_id/{id}/position/{position}", response_model=schemas.Position)
+@router.put("/update_position_by_id/{id}/position/{position}",
+            response_model=schemas.Position)
 def update_position_by_id(
         *,
         db: Session = Depends(deps.get_db),
@@ -94,7 +95,9 @@ def update_position_by_id(
     position_to_update = jsonable_encoder(position_in_db)
     position_updated = schemas.PositionUpdate(**position_to_update)
     position_updated.position = position
-    return crud.employment.update(db, db_obj=position_in_db, obj_in=position_updated)
+    return crud.employment.update(db,
+                                  db_obj=position_in_db,
+                                  obj_in=position_updated)
 
 
 @router.delete("/delete_position/{id}", response_model=schemas.Position)

@@ -19,13 +19,16 @@ def create_schedule(
     """
     Create schedule
     """
-    schedule = crud.schedule.get_by_start_day(db, start_day=schedule_in.start_day)
+    schedule = crud.schedule.get_by_start_day(db,
+                                              start_day=schedule_in.start_day)
     if schedule:
         raise HTTPException(
             status_code=400,
             detail="Schedule already exists"
         )
-    return crud.schedule.create(db, start_day=schedule_in.start_day, day_off=schedule_in.day_off)
+    return crud.schedule.create(db,
+                                start_day=schedule_in.start_day,
+                                day_off=schedule_in.day_off)
 
 
 @router.get("/get_schedule_by_id/{id}", response_model=schemas.Schedule)
@@ -75,7 +78,9 @@ def get_all_schedules(
     return crud.schedule.get_all(db)
 
 
-@router.put("/update_schedule/id/{id}/start_day/{start_day}/day_off/{day_off}", response_model=schemas.Schedule)
+@router.put("/update_schedule/id/{id}/start_day/"
+            "{start_day}/day_off/{day_off}",
+            response_model=schemas.Schedule)
 def update_schedule(
         *,
         db: Session = Depends(deps.get_db),
@@ -92,8 +97,11 @@ def update_schedule(
             status_code=404,
             detail="Position don't exists"
         )
-    schedule_updated = schemas.ScheduleUpdate(start_day=start_day, day_off=day_off)
-    return crud.schedule.update(db, db_obj=schedule_in_db, obj_in=schedule_updated)
+    schedule_updated = schemas.ScheduleUpdate(start_day=start_day,
+                                              day_off=day_off)
+    return crud.schedule.update(db,
+                                db_obj=schedule_in_db,
+                                obj_in=schedule_updated)
 
 
 @router.delete("/delete_schedule/{id}", response_model=schemas.Schedule)

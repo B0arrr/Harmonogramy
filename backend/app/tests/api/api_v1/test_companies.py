@@ -12,7 +12,9 @@ def test_create_company(
 ) -> None:
     data = {"company": "test"}
     response = client.post(
-        f"{settings.API_V1_STR}/company/create_company", headers=superuser_token_headers, json=data
+        f"{settings.API_V1_STR}/company/create_company",
+        headers=superuser_token_headers,
+        json=data
     )
     assert response.status_code == 200
     content = response.json()
@@ -25,7 +27,8 @@ def test_get_company_by_id(
 ) -> None:
     company = create_random_company(db)
     response = client.get(
-        f"{settings.API_V1_STR}/company/get_company_by_id/{company.id}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/company/get_company_by_id/{company.id}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -38,7 +41,8 @@ def test_get_company_id(
 ) -> None:
     company = create_random_company(db)
     response = client.get(
-        f"{settings.API_V1_STR}/company/get_company_id/{company.company}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/company/get_company_id/{company.company}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -50,7 +54,8 @@ def test_get_all_companies(
 ) -> None:
     companies = crud.company.get_all(db)
     response = client.get(
-        f"{settings.API_V1_STR}/company/get_all_companies", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/company/get_all_companies",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -63,7 +68,8 @@ def test_update_company_by_id(
     company = create_random_company(db)
     company_name = random_lower_string()
     response = client.put(
-        f"{settings.API_V1_STR}/company/update_company_by_id/{company.id}/company/{company_name}",
+        f"{settings.API_V1_STR}/company/update_company_by_id/"
+        f"{company.id}/company/{company_name}",
         headers=superuser_token_headers
     )
     assert response.status_code == 200

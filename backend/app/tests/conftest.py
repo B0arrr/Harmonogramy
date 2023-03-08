@@ -6,7 +6,8 @@ from starlette.testclient import TestClient
 from app.db.init_db import init_db
 from app.db.sessions import SessionLocal
 from app.main import app
-from app.models import ScheduleUser, User, Position, Employment, Company, Schedule
+from app.models import ScheduleUser, User, Position, Employment, Company, \
+    Schedule
 from app.tests.utils.company import create_random_company
 from app.tests.utils.employment import create_random_employment
 from app.tests.utils.position import create_random_position

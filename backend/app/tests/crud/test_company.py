@@ -36,7 +36,9 @@ def test_update_company(db: Session):
     company_to_update = jsonable_encoder(company_new)
     company_updated = schemas.CompanyUpdate(**company_to_update)
     company_updated.company = company_name
-    company_updated_in_db = crud.company.update(db, db_obj=company_new, obj_in=company_updated)
+    company_updated_in_db = crud.company.update(db,
+                                                db_obj=company_new,
+                                                obj_in=company_updated)
     assert company_updated_in_db
     assert company_updated_in_db.company == company_updated.company
 

@@ -15,8 +15,10 @@ def test_create_employment(db: Session):
     employment_in_db = crud.employment.create(db, obj_in=employment_in)
     assert employment_in_db
     assert employment_in.employment == employment_in_db.employment
-    assert employment_in.max_hours_per_day == employment_in_db.max_hours_per_day
-    assert employment_in.max_hours_per_week == employment_in_db.max_hours_per_week
+    assert employment_in.max_hours_per_day == employment_in_db \
+        .max_hours_per_day
+    assert employment_in.max_hours_per_week == employment_in_db \
+        .max_hours_per_week
 
 
 def test_get_employment_by_id(db: Session):
@@ -40,7 +42,8 @@ def test_update_employment(db: Session):
     employment_to_update = jsonable_encoder(employment_new)
     employment_updated = schemas.EmploymentUpdate(**employment_to_update)
     employment_updated.employment = employment_name
-    employment_updated_in_db = crud.employment.update(db, db_obj=employment_new, obj_in=employment_updated)
+    employment_updated_in_db = crud.employment \
+        .update(db, db_obj=employment_new, obj_in=employment_updated)
     assert employment_updated_in_db
     assert employment_updated_in_db.employment == employment_updated.employment
 

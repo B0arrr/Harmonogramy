@@ -7,8 +7,8 @@ from app import crud
 from app.core.config import settings
 from app.core.security import verify_password
 from app.tests.utils.user import create_random_user
-from app.tests.utils.utils import random_lower_string, random_email, random_password, random_company, random_employment, \
-    random_position
+from app.tests.utils.utils import random_lower_string, random_email, \
+    random_password, random_company, random_employment, random_position
 
 
 def test_create_user(
@@ -29,7 +29,9 @@ def test_create_user(
         "position_id": random_position(db)
     }
     response = client.post(
-        f"{settings.API_V1_STR}/user/create_user", headers=superuser_token_headers, json=data
+        f"{settings.API_V1_STR}/user/create_user",
+        headers=superuser_token_headers,
+        json=data
     )
     assert response.status_code == 200
     content = response.json()
@@ -53,7 +55,8 @@ def test_get_user_by_id(
 ) -> None:
     user = create_random_user(db)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_user_by_id/{user.id}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_user_by_id/{user.id}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -77,7 +80,8 @@ def test_get_user_by_email(
 ) -> None:
     user = create_random_user(db)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_user_by_email/{user.email}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_user_by_email/{user.email}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -101,7 +105,8 @@ def test_get_user_id_by_email(
 ) -> None:
     user = create_random_user(db)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_user_id_by_email/{user.email}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_user_id_by_email/{user.email}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -114,7 +119,9 @@ def test_get_all_users_from_company_by_id(
     company_id = random_company(db)
     users = crud.user.get_users_from_company_by_id(db, company_id=company_id)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_all_users_from_company_by_id/{company_id}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_all_users_from_company_by_id/"
+        f"{company_id}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -128,7 +135,8 @@ def test_get_all_users_from_company(
     company = crud.company.get(db, id=company_id).company
     users = crud.user.get_users_from_company_by_id(db, company_id=company_id)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_all_users_from_company/{company}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_all_users_from_company/{company}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -139,9 +147,12 @@ def test_get_all_users_with_employment_id(
         client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:
     employment_id = random_employment(db)
-    users = crud.user.get_users_with_employment(db, employment_id=employment_id)
+    users = crud.user.get_users_with_employment(db,
+                                                employment_id=employment_id)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_all_users_with_employment_id/{employment_id}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_all_users_with_employment_id/"
+        f"{employment_id}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -153,9 +164,12 @@ def test_get_all_users_with_employment(
 ) -> None:
     employment_id = random_employment(db)
     employment = crud.employment.get(db, id=employment_id).employment
-    users = crud.user.get_users_with_employment(db, employment_id=employment_id)
+    users = crud.user.get_users_with_employment(db,
+                                                employment_id=employment_id)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_all_users_with_employment/{employment}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_all_users_with_employment/"
+        f"{employment}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -168,7 +182,9 @@ def test_get_all_users_on_position_id(
     position_id = random_position(db)
     users = crud.user.get_users_on_position(db, position_id=position_id)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_all_users_on_position_id/{position_id}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_all_users_on_position_id/"
+        f"{position_id}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -182,7 +198,8 @@ def test_get_all_users_on_position(
     position = crud.position.get(db, id=position_id).position
     users = crud.user.get_users_on_position(db, position_id=position_id)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_all_users_on_position/{position}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_all_users_on_position/{position}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -194,7 +211,8 @@ def test_get_all_users(
 ) -> None:
     users = crud.user.get_all(db)
     response = client.get(
-        f"{settings.API_V1_STR}/user/get_all_users", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/get_all_users",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()
@@ -219,7 +237,9 @@ def test_update_user_by_id(
         "position_id": random_position(db)
     }
     response = client.put(
-        f"{settings.API_V1_STR}/user/update_user_by_id/{user.id}", headers=superuser_token_headers, json=data
+        f"{settings.API_V1_STR}/user/update_user_by_id/{user.id}",
+        headers=superuser_token_headers,
+        json=data
     )
     assert response.status_code == 200
     content = response.json()
@@ -245,7 +265,9 @@ def test_update_user_password(
         "password": random_lower_string()
     }
     response = client.put(
-        f"{settings.API_V1_STR}/user/update_user_password/{user.id}", headers=superuser_token_headers, json=data
+        f"{settings.API_V1_STR}/user/update_user_password/{user.id}",
+        headers=superuser_token_headers,
+        json=data
     )
     # assert response.status_code == 200
     content = response.json()
@@ -269,7 +291,8 @@ def test_delete_user(
 ) -> None:
     user = create_random_user(db)
     response = client.delete(
-        f"{settings.API_V1_STR}/user/delete_user/{user.id}", headers=superuser_token_headers
+        f"{settings.API_V1_STR}/user/delete_user/{user.id}",
+        headers=superuser_token_headers
     )
     assert response.status_code == 200
     content = response.json()

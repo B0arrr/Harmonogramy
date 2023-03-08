@@ -5,8 +5,9 @@ from sqlalchemy.orm import Session
 from app import schemas, crud
 from app.models import User
 from app.tests.utils.user import create_random_user
-from app.tests.utils.utils import random_lower_string, random_email, random_bool, random_int, random_password, \
-    random_position, random_employment, random_company
+from app.tests.utils.utils import random_lower_string, random_email, \
+    random_bool, random_int, random_password, random_position, \
+    random_employment, random_company
 
 
 def test_create_user(db: Session):
@@ -98,8 +99,10 @@ def test_get_users_from_company_by_id(db: Session):
 
 def test_get_users_with_employment(db: Session):
     employment_id = random_employment(db)
-    users = crud.user.get_users_with_employment(db, employment_id=employment_id)
-    users_in_db = db.query(User).filter(User.employment_id == employment_id).all()
+    users = crud.user \
+        .get_users_with_employment(db, employment_id=employment_id)
+    users_in_db = db.query(User) \
+        .filter(User.employment_id == employment_id).all()
     assert len(users) == len(users_in_db)
     assert users == users_in_db
 

@@ -27,12 +27,16 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
     def get_users_with_employment(
             self, db: Session, *, employment_id: int
     ) -> List[User]:
-        return db.query(self.model).filter(User.employment_id == employment_id).all()
+        return db.query(self.model) \
+            .filter(User.employment_id == employment_id) \
+            .all()
 
     def get_users_on_position(
             self, db: Session, *, position_id: int
     ) -> List[User]:
-        return db.query(self.model).filter(User.position_id == position_id).all()
+        return db.query(self.model) \
+            .filter(User.position_id == position_id) \
+            .all()
 
     def authenticate(
             self, db: Session, *, email: str, password: str

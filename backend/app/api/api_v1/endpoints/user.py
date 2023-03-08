@@ -83,7 +83,8 @@ def get_user_id(
     return user.id
 
 
-@router.get("/get_all_users_from_company_by_id/{company_id}", response_model=List[schemas.User])
+@router.get("/get_all_users_from_company_by_id/{company_id}",
+            response_model=List[schemas.User])
 def get_all_users_from_company_by_id(
         *,
         db: Session = Depends(deps.get_db),
@@ -95,7 +96,8 @@ def get_all_users_from_company_by_id(
     return crud.user.get_users_from_company_by_id(db, company_id=company_id)
 
 
-@router.get("/get_all_users_from_company/{company}", response_model=List[schemas.User])
+@router.get("/get_all_users_from_company/{company}",
+            response_model=List[schemas.User])
 def get_all_users_from_company(
         *,
         db: Session = Depends(deps.get_db),
@@ -113,7 +115,8 @@ def get_all_users_from_company(
     return crud.user.get_users_from_company_by_id(db, company_id=company.id)
 
 
-@router.get("/get_all_users_with_employment_id/{employment_id}", response_model=List[schemas.User])
+@router.get("/get_all_users_with_employment_id/{employment_id}",
+            response_model=List[schemas.User])
 def get_all_users_with_employment_id(
         *,
         db: Session = Depends(deps.get_db),
@@ -125,7 +128,8 @@ def get_all_users_with_employment_id(
     return crud.user.get_users_with_employment(db, employment_id=employment_id)
 
 
-@router.get("/get_all_users_with_employment/{employment}", response_model=List[schemas.User])
+@router.get("/get_all_users_with_employment/{employment}",
+            response_model=List[schemas.User])
 def get_all_users_with_employment(
         *,
         db: Session = Depends(deps.get_db),
@@ -143,7 +147,8 @@ def get_all_users_with_employment(
     return crud.user.get_users_with_employment(db, employment_id=employment.id)
 
 
-@router.get("/get_all_users_on_position_id/{position_id}", response_model=List[schemas.User])
+@router.get("/get_all_users_on_position_id/{position_id}",
+            response_model=List[schemas.User])
 def get_all_users_on_position_id(
         *,
         db: Session = Depends(deps.get_db),
@@ -155,7 +160,8 @@ def get_all_users_on_position_id(
     return crud.user.get_users_on_position(db, position_id=position_id)
 
 
-@router.get("/get_all_users_on_position/{position}", response_model=List[schemas.User])
+@router.get("/get_all_users_on_position/{position}",
+            response_model=List[schemas.User])
 def get_all_users_on_position(
         *,
         db: Session = Depends(deps.get_db),

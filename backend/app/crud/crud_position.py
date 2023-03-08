@@ -9,7 +9,9 @@ class CRUDPosition(CRUDBase[Position, PositionCreate, PositionUpdate]):
     def get_by_position(
             self, db: Session, *, position: str
     ) -> Position:
-        return db.query(self.model).filter(Position.position == position).first()
+        return db.query(self.model) \
+            .filter(Position.position == position) \
+            .first()
 
 
 position = CRUDPosition(Position)
