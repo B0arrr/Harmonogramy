@@ -1,0 +1,17 @@
+<a routerLink="/company/add">Add company</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Company name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of companies">
+      <th scope="row">{{ company.id }}</th>
+      <td>{{ company.company }}</td>
+      <td><a routerLink="./edit/{{ company.id }}">Edit</a></td>
+    </tr>
+  </tbody>
+</table>

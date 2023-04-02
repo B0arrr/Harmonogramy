@@ -17,6 +17,7 @@ describe('HeaderComponent', () => {
   ]);
 
   fakeAccountService.token = of({});
+  fakeAccountService.user = of({});
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

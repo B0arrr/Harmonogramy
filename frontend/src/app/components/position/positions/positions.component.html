@@ -1,0 +1,17 @@
+<a routerLink="./add">Add position</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Position name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let position of positions">
+      <th scope="row">{{ position.id }}</th>
+      <td>{{ position.position }}</td>
+      <td><a routerLink="./edit/{{ position.id }}">Edit</a></td>
+    </tr>
+  </tbody>
+</table>

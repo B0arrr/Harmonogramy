@@ -1,0 +1,72 @@
+<div class="card">
+  <h4 class="card-header">Add employment</h4>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Employment</label>
+        <input
+          type="text"
+          formControlName="employment"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['employment'].errors }"
+        />
+        <div
+          *ngIf="submitted && f['employment'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['employment'].errors['required']">
+            Employment is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Hours per day</label>
+        <input
+          type="number"
+          formControlName="hours_per_day"
+          class="form-control"
+          min="1"
+          max="24"
+          [ngClass]="{ 'is-invalid': submitted && f['hours_per_day'].errors }"
+        />
+        <div
+          *ngIf="submitted && f['hours_per_day'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['hours_per_day'].errors['required']">
+            Hours per day is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Hours per week</label>
+        <input
+          type="number"
+          formControlName="hours_per_week"
+          class="form-control"
+          min="1"
+          max="168"
+          [ngClass]="{ 'is-invalid': submitted && f['hours_per_week'].errors }"
+        />
+        <div
+          *ngIf="submitted && f['hours_per_week'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['hours_per_week'].errors['required']">
+            Hours per week is required
+          </div>
+        </div>
+      </div>
+      <div>
+        <button [disabled]="loading" class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm me-1"
+          ></span>
+          Add employment
+        </button>
+        <a routerLink="../" class="btn btn-link">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

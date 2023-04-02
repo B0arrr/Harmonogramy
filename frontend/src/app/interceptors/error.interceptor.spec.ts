@@ -55,7 +55,7 @@ describe('ErrorInterceptor', () => {
       const testMock = httpMock.expectOne('/test');
       testMock.flush(
         { data: 'Invalid request' },
-        { status: 400, statusText: 'Bad Request' }
+        { status: 401, statusText: 'Bad Request' }
       );
     });
 

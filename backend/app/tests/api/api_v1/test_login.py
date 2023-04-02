@@ -2,6 +2,7 @@ from typing import Dict
 
 from fastapi.testclient import TestClient
 
+from app import crud
 from app.core.config import settings
 
 
@@ -30,6 +31,25 @@ def test_use_access_token(
     assert result.status_code == 200
     content = result.json()
     assert "email" in content
+
+
+def test_check_password(
+        client: TestClient, superuser_token_headers: Dict[str, str]
+) -> None:
+    data = {
+        "email": settings.FIRST_SUPERUSER,
+        "password": settings.FIRST_SUPERUSER_PASSWORD
+    }
+    result = client.post(
+        f"{settings.API_V1_STR}/check_password",
+        headers=superuser_token_headers,
+        data=data
+    )
+    assert result.status_code == 200
+    content = result.json()
+    assert "email" in content
+    assert "password" in content
+    assert content["email"] == data["email"]
 
 # def test_password_recovery(
 #         client: TestClient

@@ -1,0 +1,116 @@
+<div class="card">
+  <h4 class="card-header">Register</h4>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Employed</label>
+        <select
+          formControlName="is_employed"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['is_employed'].errors }"
+        >
+          <option value=""></option>
+          <option value="1">yes</option>
+          <option value="0">no</option>
+        </select>
+        <div
+          *ngIf="submitted && f['is_employed'].errors"
+          class="invalid-feedback"
+        ></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Date of fired</label>
+        <input
+          type="date"
+          formControlName="date_of_fired"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['date_of_fired'].errors }"
+        />
+        <div
+          *ngIf="submitted && f['date_of_fired'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['date_of_fired'].errors['required']">
+            Date of fired is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Company</label>
+        <select
+          formControlName="company_id"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['company_id'].errors }"
+        >
+          <option value=""></option>
+          <option *ngFor="let company of companies" value="{{ company.id }}">
+            {{ company.company }}
+          </option>
+        </select>
+        <div
+          *ngIf="submitted && f['company_id'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['company_id'].errors['required']">
+            Company is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Employment</label>
+        <select
+          formControlName="employment_id"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['employment_id'].errors }"
+        >
+          <option value=""></option>
+          <option
+            *ngFor="let employment of employments"
+            value="{{ employment.id }}"
+          >
+            {{ employment.employment }}
+          </option>
+        </select>
+        <div
+          *ngIf="submitted && f['employment_id'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['employment_id'].errors['required']">
+            Employment is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Position</label>
+        <select
+          formControlName="position_id"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['position_id'].errors }"
+        >
+          <option value=""></option>
+          <option *ngFor="let position of positions" value="{{ position.id }}">
+            {{ position.position }}
+          </option>
+        </select>
+        <div
+          *ngIf="submitted && f['position_id'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['position_id'].errors['required']">
+            Position is required
+          </div>
+        </div>
+      </div>
+      <div>
+        <button [disabled]="loading" class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm me-1"
+          ></span>
+          Register
+        </button>
+        <a routerLink="../" class="btn btn-link">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

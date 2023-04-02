@@ -10,13 +10,15 @@ import { environment } from '../../../environments/environment';
 })
 export class HeaderComponent {
   token?: Token | null;
-  tokenValue?: Token | null;
   title?: string;
+  user?: string | null;
 
   constructor(private accountService: AccountService) {
     this.accountService.token.subscribe((x) => (this.token = x));
-    this.tokenValue = this.accountService.tokenValue;
     this.title = environment.title;
+    this.accountService.user.subscribe(
+      (x) => (this.user = x?.first_name?.toString())
+    );
   }
 
   logout(): void {

@@ -1,0 +1,21 @@
+<a routerLink="./add">Add employment</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Employment name</th>
+      <th scope="col">Max h per day</th>
+      <th scope="col">Max h per week</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employment of employments">
+      <th scope="row">{{ employment.id }}</th>
+      <td>{{ employment.employment }}</td>
+      <td>{{ employment.max_hours_per_day }}</td>
+      <td>{{ employment.max_hours_per_week }}</td>
+      <td><a routerLink="./edit/{{ employment.id }}">Edit</a></td>
+    </tr>
+  </tbody>
+</table>

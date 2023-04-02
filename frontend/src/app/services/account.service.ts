@@ -66,6 +66,10 @@ export class AccountService {
       );
   }
 
+  checkPassword(params: any): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}/check_password`, params);
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     this.tokenSubject.next(null);
@@ -78,38 +82,40 @@ export class AccountService {
     return this.http.post<User>(`${environment.apiUrl}/user/create_user`, user);
   }
 
-  getAll(): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiUrl}/user/get_all_users`);
-  }
-
-  getById(id: number): Observable<User> {
-    return this.http.get<User>(
-      `${environment.apiUrl}/user/get_user_by_id/${id}`
-    );
-  }
-
   update(id: number, params: any): Observable<User> {
-    return this.http.put(`${environment.apiUrl}/users/${id}`, params).pipe(
-      map((x) => {
-        if (id == this.userValue?.id) {
-          const user = { ...this.userValue, ...params };
+    return this.http
+      .put(`${environment.apiUrl}/user/update_user_by_id/${id}`, params)
+      .pipe(
+        map((user: User) => {
           localStorage.setItem('user', JSON.stringify(user));
           this.userSubject.next(user);
           return user;
-        }
-        return x;
-      })
-    );
+        })
+      );
   }
 
-  delete(id: number) {
-    return this.http.delete(`${environment.apiUrl}/users/${id}`).pipe(
-      map((x) => {
-        if (id == this.userValue?.id) {
-          this.logout();
-        }
-        return x;
-      })
-    );
+  updatePassword(id: number, params: any): Observable<User> {
+    return this.http
+      .put(`${environment.apiUrl}/user/update_user_password/${id}`, params)
+      .pipe(
+        map((user: User) => {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.userSubject.next(user);
+          return user;
+        })
+      );
+  }
+
+  delete(id: number): Observable<User> {
+    return this.http
+      .delete(`${environment.apiUrl}/user/delete_user/${id}`)
+      .pipe(
+        map((x: User) => {
+          if (id == this.userValue?.id) {
+            this.logout();
+          }
+          return x;
+        })
+      );
   }
 }

@@ -1,0 +1,29 @@
+<div class="card">
+  <h4 class="card-header">Edit company</h4>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Company</label>
+        <input
+          type="text"
+          formControlName="company"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['company'].errors }"
+        />
+        <div *ngIf="submitted && f['company'].errors" class="invalid-feedback">
+          <div *ngIf="f['company'].errors['required']">Company is required</div>
+        </div>
+      </div>
+      <div>
+        <button [disabled]="loading" class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm me-1"
+          ></span>
+          Edit company
+        </button>
+        <a routerLink="../" class="btn btn-link">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

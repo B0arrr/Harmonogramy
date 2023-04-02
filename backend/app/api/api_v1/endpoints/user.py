@@ -241,6 +241,37 @@ def update_user_password(
     return crud.user.update(db, db_obj=user_in_db, obj_in=user_updated)
 
 
+@router.put("/activate_user/{id}", response_model=schemas.User)
+def activate_user(
+        *,
+        db: Session = Depends(deps.get_db),
+        id: int
+) -> Any:
+    """
+    Activate user
+    """
+    user_in_db = crud.user.get(db, id=id)
+    if not user_in_db:
+        raise HTTPException(
+            status_code=404,
+            detail="User don't exists"
+        )
+    user_updated = schemas.UserUpdate(
+        first_name=user_in_db.first_name,
+        last_name=user_in_db.last_name,
+        email=user_in_db.email,
+        is_active=True,
+        is_superuser=user_in_db.is_superuser,
+        is_employed=user_in_db.is_employed,
+        date_of_employment=user_in_db.date_of_employment,
+        date_of_fired=user_in_db.date_of_fired,
+        company_id=user_in_db.company_id,
+        employment_id=user_in_db.employment_id,
+        position_id=user_in_db.position_id
+    )
+    return crud.user.update(db, db_obj=user_in_db, obj_in=user_updated)
+
+
 @router.delete("/delete_user/{id}", response_model=schemas.User)
 def delete_user(
         *,

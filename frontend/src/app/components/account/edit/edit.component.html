@@ -1,0 +1,64 @@
+<div class="card">
+  <h4 class="card-header">Edit</h4>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input
+          type="text"
+          formControlName="first_name"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }"
+        />
+        <div
+          *ngIf="submitted && f['first_name'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['first_name'].errors['required']">
+            First name is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input
+          type="text"
+          formControlName="last_name"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['last_name'].errors }"
+        />
+        <div
+          *ngIf="submitted && f['last_name'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['last_name'].errors['required']">
+            Last name is required
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input
+          type="text"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+        />
+        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+          <div *ngIf="f['email'].errors['required']">Email is required</div>
+          <div *ngIf="f['email'].errors['required']">Email is incorrect</div>
+        </div>
+      </div>
+      <div>
+        <button [disabled]="loading" class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm me-1"
+          ></span>
+          Edit
+        </button>
+        <a routerLink="../password" class="btn btn-link">Change password</a>
+      </div>
+    </form>
+  </div>
+</div>

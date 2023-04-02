@@ -3,6 +3,7 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, Body
 from fastapi.security import OAuth2PasswordRequestForm
+from pydantic import EmailStr
 from sqlalchemy.orm import Session
 
 from app import schemas, crud, models
@@ -53,6 +54,24 @@ def test_token(
     Test access token
     """
     return current_user
+
+
+@router.post("/check_password", response_model=schemas.User)
+def check_password(
+        db: Session = Depends(deps.get_db),
+        email: EmailStr = Body(...),
+        password: str = Body(...)
+) -> Any:
+    """
+    Check user password
+    """
+    user = crud.user.authenticate(db, email=email, password=password)
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="Password is not correct",
+        )
+    return user
 
 
 @router.post("/password-recovery/{email}", response_model=schemas.Msg)

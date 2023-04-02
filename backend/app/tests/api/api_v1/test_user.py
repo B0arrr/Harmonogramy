@@ -286,6 +286,19 @@ def test_update_user_password(
     assert content["position_id"] == user.position_id
 
 
+def test_activate_user(
+        client: TestClient, superuser_token_headers: dict, db: Session
+) -> None:
+    user = crud.user.get_user_by_email(db=db, email=settings.FIRST_SUPERUSER)
+    response = client.put(
+        f"{settings.API_V1_STR}/user/activate_user/{user.id}",
+        headers=superuser_token_headers
+    )
+    assert response.status_code == 200
+    content = response.json()
+    assert content["is_active"] is True
+
+
 def test_delete_user(
         client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:

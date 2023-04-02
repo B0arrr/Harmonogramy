@@ -93,6 +93,15 @@ describe('AccountService', () => {
     });
   });
 
+  describe('checkPassword', () => {
+    it('should check if password is correct', () => {
+      fakeHttpClient.post.and.returnValue(of({}));
+      service.checkPassword({}).subscribe((x) => {
+        expect(x).toEqual({});
+      });
+    });
+  });
+
   describe('logout', () => {
     it('should clear token and user', () => {
       service.logout();
@@ -117,43 +126,6 @@ describe('AccountService', () => {
     });
   });
 
-  describe('getAll', () => {
-    it('should get all users', () => {
-      const users = [
-        {
-          email: 'test@test.pl',
-          password: 'test'
-        },
-        {
-          email: 'test2@test.pl',
-          password: 'test2'
-        },
-        {
-          email: 'test3@test.pl',
-          password: 'test3'
-        }
-      ];
-      fakeHttpClient.get.and.returnValue(of(users));
-      service.getAll().subscribe((x) => {
-        expect(x).toEqual(users);
-      });
-    });
-  });
-
-  describe('getById', () => {
-    it('should get user by id', () => {
-      const user = {
-        id: 1,
-        email: 'test@test.pl',
-        password: 'test'
-      };
-      fakeHttpClient.get.and.returnValue(of(user));
-      service.getById(user.id).subscribe((x) => {
-        expect(x).toEqual(user as User);
-      });
-    });
-  });
-
   describe('update', () => {
     it('should update user', () => {
       const user = JSON.parse(localStorage.getItem('user') as string);
@@ -161,7 +133,26 @@ describe('AccountService', () => {
         email: 'test2@test.pl',
         password: 'test2'
       };
-      fakeHttpClient.put.and.returnValue(of(user));
+      fakeHttpClient.put.and.returnValue(of({ ...user, ...params }));
+      service.update(user.id, params).subscribe((x) => {
+        const updatedUser = { ...user, ...params };
+        expect(x).toEqual(updatedUser);
+        expect(service.userValue).toEqual(updatedUser);
+        expect(JSON.parse(localStorage.getItem('user') as string)).toEqual(
+          updatedUser
+        );
+      });
+    });
+  });
+
+  describe('updatePassword', () => {
+    it('should update user', () => {
+      const user = JSON.parse(localStorage.getItem('user') as string);
+      const params = {
+        email: 'test@test.pl',
+        password: 'test2'
+      };
+      fakeHttpClient.put.and.returnValue(of({ ...user, ...params }));
       service.update(user.id, params).subscribe((x) => {
         const updatedUser = { ...user, ...params };
         expect(x).toEqual(updatedUser);

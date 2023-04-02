@@ -1,0 +1,40 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Activated</th>
+      <th scope="col">Employed</th>
+      <th scope="col">Date of employment</th>
+      <th scope="col">Date of fired</th>
+      <th scope="col">Company</th>
+      <th scope="col">Employment</th>
+      <th scope="col">Position</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <th scope="row">{{ user.id }}</th>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.is_active }}</td>
+      <td>{{ user.is_employed }}</td>
+      <td>{{ user.date_of_employment }}</td>
+      <td>{{ user.date_of_fired }}</td>
+      <td>{{ user.company_id }}</td>
+      <td>{{ user.employment_id }}</td>
+      <td>{{ user.position_id }}</td>
+      <td>
+        <button *ngIf="!user.is_active" (click)="activate(user.id)">
+          Activate
+        </button>
+      </td>
+      <td><a routerLink="./edit/{{ user.id }}">Edit</a></td>
+    </tr>
+  </tbody>
+</table>

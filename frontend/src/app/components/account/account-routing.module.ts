@@ -1,7 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
+import { EditComponent } from './edit/edit.component';
+import { LayoutComponent } from '../layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
+import { PasswordComponent } from './password/password.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -12,6 +14,8 @@ const routes: Routes = [
       { path: '', redirectTo: '/account/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'edit', component: EditComponent },
+      { path: 'password', component: PasswordComponent },
 
       { path: '**', redirectTo: '' }
     ]

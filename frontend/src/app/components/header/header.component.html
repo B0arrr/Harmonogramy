@@ -12,13 +12,25 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div
+    class="collapse navbar-collapse justify-content-between"
+    id="navbarSupportedContent"
+  >
+    <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/">Home</a>
       </li>
-      <li class="nav-item d-flex">
+    </ul>
+    <ul class="navbar-nav">
+      <li *ngIf="!user" class="nav-item d-flex">
         <a class="nav-link" routerLink="/account">Login</a>
+      </li>
+      <li *ngIf="user" class="nav-item d-flex">
+        <a class="nav-link" routerLink="/account/edit">User {{ user }}</a>
+        <a class="nav-link" routerLink="/company">Companies</a>
+        <a class="nav-link" routerLink="/employment">Employments</a>
+        <a class="nav-link" routerLink="/position">Positions</a>
+        <a class="nav-link" routerLink="/user">Users</a>
         <button class="btn btn-link nav-item nav-link" (click)="logout()">
           Logout
         </button>
