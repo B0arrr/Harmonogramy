@@ -1,17 +1,17 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Activated</th>
-      <th scope="col">Employed</th>
-      <th scope="col">Date of employment</th>
-      <th scope="col">Date of fired</th>
-      <th scope="col">Company</th>
-      <th scope="col">Employment</th>
-      <th scope="col">Position</th>
+      <th scope="col">{{ 'TABLE.ID' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.FIRST_NAME' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.LAST_NAME' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.EMAIL' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.ACTIVATED' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.EMPLOYED' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.DATE_OF_EMPLOYMENT' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.DATE_OF_FIRED' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.COMPANY' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.EMPLOYMENT' | translate }}</th>
+      <th scope="col">{{ 'TABLE.USERS.POSITION' | translate }}</th>
       <th></th>
       <th></th>
     </tr>
@@ -31,10 +31,12 @@
       <td>{{ user.position_id }}</td>
       <td>
         <button *ngIf="!user.is_active" (click)="activate(user.id)">
-          Activate
+          {{ 'TABLE.USERS.ACTIVATE' | translate }}
         </button>
       </td>
-      <td><a routerLink="./edit/{{ user.id }}">Edit</a></td>
+      <td>
+        <a routerLink="./edit/{{ user.id }}">{{ 'TABLE.EDIT' | translate }}</a>
+      </td>
     </tr>
   </tbody>
 </table>

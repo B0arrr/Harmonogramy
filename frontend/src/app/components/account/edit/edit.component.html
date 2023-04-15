@@ -1,9 +1,11 @@
 <div class="card">
-  <h4 class="card-header">Edit</h4>
+  <h4 class="card-header">{{ 'FORM.EDIT' | translate }}</h4>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">First Name</label>
+        <label class="form-label">{{
+          'FORM.ACCOUNT.EDIT.FIRST_NAME' | translate
+        }}</label>
         <input
           type="text"
           formControlName="first_name"
@@ -15,12 +17,14 @@
           class="invalid-feedback"
         >
           <div *ngIf="f['first_name'].errors['required']">
-            First name is required
+            {{ 'FORM.ACCOUNT.EDIT.ERROR.FIRST_NAME' | translate }}
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Last Name</label>
+        <label class="form-label">{{
+          'FORM.ACCOUNT.EDIT.LAST_NAME' | translate
+        }}</label>
         <input
           type="text"
           formControlName="last_name"
@@ -32,12 +36,14 @@
           class="invalid-feedback"
         >
           <div *ngIf="f['last_name'].errors['required']">
-            Last name is required
+            {{ 'FORM.ACCOUNT.EDIT.ERROR.LAST_NAME' | translate }}
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Email</label>
+        <label class="form-label">{{
+          'FORM.ACCOUNT.EDIT.EMAIL' | translate
+        }}</label>
         <input
           type="text"
           formControlName="email"
@@ -45,8 +51,12 @@
           [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
         />
         <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-          <div *ngIf="f['email'].errors['required']">Email is required</div>
-          <div *ngIf="f['email'].errors['required']">Email is incorrect</div>
+          <div *ngIf="f['email'].errors['required']">
+            {{ 'FORM.ACCOUNT.EDIT.ERROR.EMAIL_REQUIRED' | translate }}
+          </div>
+          <div *ngIf="f['email'].errors['required']">
+            {{ 'FORM.ACCOUNT.EDIT.ERROR.EMAIL_INCORRECT' | translate }}
+          </div>
         </div>
       </div>
       <div>
@@ -55,9 +65,11 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm me-1"
           ></span>
-          Edit
+          {{ 'FORM.EDIT' | translate }}
         </button>
-        <a routerLink="../password" class="btn btn-link">Change password</a>
+        <a routerLink="../password" class="btn btn-link">{{
+          'FORM.ACCOUNT.EDIT.PASSWORD.CHANGE' | translate
+        }}</a>
       </div>
     </form>
   </div>

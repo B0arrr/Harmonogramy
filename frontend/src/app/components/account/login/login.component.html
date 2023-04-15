@@ -1,9 +1,11 @@
 <div class="card">
-  <h4 class="card-header">Login</h4>
+  <h4 class="card-header">{{ 'FORM.ACCOUNT.LOGIN.LOGIN' | translate }}</h4>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">Email</label>
+        <label class="form-label">{{
+          'FORM.ACCOUNT.LOGIN.EMAIL' | translate
+        }}</label>
         <input
           type="text"
           formControlName="username"
@@ -12,12 +14,14 @@
         />
         <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
           <div *ngIf="f['username'].errors['required']">
-            Username is required
+            {{ 'FORM.ACCOUNT.LOGIN.ERROR.EMAIL' | translate }}
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">{{
+          'FORM.ACCOUNT.LOGIN.PASSWORD' | translate
+        }}</label>
         <input
           type="password"
           formControlName="password"
@@ -26,7 +30,7 @@
         />
         <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
           <div *ngIf="f['password'].errors['required']">
-            Password is required
+            {{ 'FORM.ACCOUNT.LOGIN.ERROR.PASSWORD' | translate }}
           </div>
         </div>
       </div>
@@ -36,9 +40,11 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm me-1"
           ></span>
-          Login
+          {{ 'FORM.LOGIN' | translate }}
         </button>
-        <a routerLink="../register" class="btn btn-link">Register</a>
+        <a routerLink="../register" class="btn btn-link">{{
+          'FORM.REGISTER' | translate
+        }}</a>
       </div>
     </form>
   </div>

@@ -1,17 +1,17 @@
 <div class="card">
-  <h4 class="card-header">Register</h4>
+  <h4 class="card-header">{{ 'FORM.USER.EDIT' | translate }}</h4>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">Employed</label>
+        <label class="form-label">{{ 'FORM.USER.EMPLOYED' | translate }}</label>
         <select
           formControlName="is_employed"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['is_employed'].errors }"
         >
           <option value=""></option>
-          <option value="1">yes</option>
-          <option value="0">no</option>
+          <option value="1">{{ 'FORM.USER.SELECT.YES' | translate }}</option>
+          <option value="0">{{ 'FORM.USER.SELECT.NO' | translate }}</option>
         </select>
         <div
           *ngIf="submitted && f['is_employed'].errors"
@@ -19,7 +19,9 @@
         ></div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Date of fired</label>
+        <label class="form-label">{{
+          'FORM.USER.DATE_OF_FIRED' | translate
+        }}</label>
         <input
           type="date"
           formControlName="date_of_fired"
@@ -31,12 +33,12 @@
           class="invalid-feedback"
         >
           <div *ngIf="f['date_of_fired'].errors['required']">
-            Date of fired is required
+            {{ 'FORM.USER.ERROR.DATE_OF_FIRED' | translate }}
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Company</label>
+        <label class="form-label">{{ 'FORM.USER.COMPANY' | translate }}</label>
         <select
           formControlName="company_id"
           class="form-control"
@@ -52,12 +54,14 @@
           class="invalid-feedback"
         >
           <div *ngIf="f['company_id'].errors['required']">
-            Company is required
+            {{ 'FORM.USER.ERROR.COMPANY' | translate }}
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Employment</label>
+        <label class="form-label">{{
+          'FORM.USER.EMPLOYMENT' | translate
+        }}</label>
         <select
           formControlName="employment_id"
           class="form-control"
@@ -76,12 +80,12 @@
           class="invalid-feedback"
         >
           <div *ngIf="f['employment_id'].errors['required']">
-            Employment is required
+            {{ 'FORM.USER.ERROR.EMPLOYMENT' | translate }}
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Position</label>
+        <label class="form-label">{{ 'FORM.USER.POSITION' | translate }}</label>
         <select
           formControlName="position_id"
           class="form-control"
@@ -97,7 +101,7 @@
           class="invalid-feedback"
         >
           <div *ngIf="f['position_id'].errors['required']">
-            Position is required
+            {{ 'FORM.USER.ERROR.POSITION' | translate }}
           </div>
         </div>
       </div>
@@ -107,9 +111,11 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm me-1"
           ></span>
-          Register
+          {{ 'FORM.USER.EDIT' | translate }}
         </button>
-        <a routerLink="../" class="btn btn-link">Cancel</a>
+        <a routerLink="../" class="btn btn-link">{{
+          'FORM.CANCEL' | translate
+        }}</a>
       </div>
     </form>
   </div>

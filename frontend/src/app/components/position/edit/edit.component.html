@@ -1,9 +1,11 @@
 <div class="card">
-  <h4 class="card-header">Edit position</h4>
+  <h4 class="card-header">{{ 'FORM.POSITION.EDIT' | translate }}</h4>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">Position</label>
+        <label class="form-label">{{
+          'FORM.POSITION.POSITION' | translate
+        }}</label>
         <input
           type="text"
           formControlName="position"
@@ -12,7 +14,7 @@
         />
         <div *ngIf="submitted && f['position'].errors" class="invalid-feedback">
           <div *ngIf="f['position'].errors['required']">
-            Position is required
+            {{ 'FORM.POSITION.ERROR.POSITION' | translate }}
           </div>
         </div>
       </div>
@@ -22,9 +24,11 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm me-1"
           ></span>
-          Edit position
+          {{ 'FORM.POSITION.EDIT' | translate }}
         </button>
-        <a routerLink="../" class="btn btn-link">Cancel</a>
+        <a routerLink="../" class="btn btn-link">{{
+          'FORM.CANCEL' | translate
+        }}</a>
       </div>
     </form>
   </div>

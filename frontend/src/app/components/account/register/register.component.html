@@ -1,9 +1,11 @@
 <div class="card">
-  <h4 class="card-header">Register</h4>
+  <h4 class="card-header">{{ 'FORM.REGISTER' | translate }}</h4>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">First Name</label>
+        <label class="form-label">{{
+          'FORM.ACCOUNT.REGISTER.FIRST_NAME' | translate
+        }}</label>
         <input
           type="text"
           formControlName="first_name"
@@ -15,12 +17,14 @@
           class="invalid-feedback"
         >
           <div *ngIf="f['first_name'].errors['required']">
-            First Name is required
+            {{ 'FORM.ACCOUNT.REGISTER.ERROR.FIRST_NAME' | translate }}
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Last Name</label>
+        <label class="form-label">{{
+          'FORM.ACCOUNT.REGISTER.LAST_NAME' | translate
+        }}</label>
         <input
           type="text"
           formControlName="last_name"
@@ -32,12 +36,14 @@
           class="invalid-feedback"
         >
           <div *ngIf="f['last_name'].errors['required']">
-            Last Name is required
+            {{ 'FORM.ACCOUNT.REGISTER.ERROR.LAST_NAME' | translate }}
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Email</label>
+        <label class="form-label">{{
+          'FORM.ACCOUNT.REGISTER.EMAIL' | translate
+        }}</label>
         <input
           type="text"
           formControlName="email"
@@ -45,12 +51,18 @@
           [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
         />
         <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-          <div *ngIf="f['email'].errors['required']">Email is required</div>
-          <div *ngIf="f['email'].errors['email']">Email is incorrect</div>
+          <div *ngIf="f['email'].errors['required']">
+            {{ 'FORM.ACCOUNT.REGISTER.ERROR.EMAIL_REQUIRED' | translate }}
+          </div>
+          <div *ngIf="f['email'].errors['email']">
+            {{ 'FORM.ACCOUNT.REGISTER.ERROR.EMAIL_INCORRECT' | translate }}
+          </div>
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">{{
+          'FORM.ACCOUNT.REGISTER.PASSWORD' | translate
+        }}</label>
         <input
           type="password"
           formControlName="password"
@@ -59,10 +71,10 @@
         />
         <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
           <div *ngIf="f['password'].errors['required']">
-            Password is required
+            {{ 'FORM.ACCOUNT.REGISTER.ERROR.PASSWORD_REQUIRED' | translate }}
           </div>
           <div *ngIf="f['password'].errors['minlength']">
-            Password must be at least 8 characters
+            {{ 'FORM.ACCOUNT.REGISTER.ERROR.PASSWORD_MIN_LEN' | translate }}
           </div>
         </div>
       </div>
@@ -72,9 +84,11 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm me-1"
           ></span>
-          Register
+          {{ 'FORM.REGISTER' | translate }}
         </button>
-        <a routerLink="../login" class="btn btn-link">Cancel</a>
+        <a routerLink="../login" class="btn btn-link">{{
+          'FORM.CANCEL' | translate
+        }}</a>
       </div>
     </form>
   </div>

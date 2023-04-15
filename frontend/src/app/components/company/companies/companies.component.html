@@ -1,9 +1,9 @@
-<a routerLink="/company/add">Add company</a>
+<a routerLink="/company/add">{{ 'TABLE.ADD_COMPANY' | translate }}</a>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Company name</th>
+      <th scope="col">{{ 'TABLE.ID' | translate }}</th>
+      <th scope="col">{{ 'TABLE.COMPANY.COMPANY' | translate }}</th>
       <th></th>
     </tr>
   </thead>
@@ -11,7 +11,11 @@
     <tr *ngFor="let company of companies">
       <th scope="row">{{ company.id }}</th>
       <td>{{ company.company }}</td>
-      <td><a routerLink="./edit/{{ company.id }}">Edit</a></td>
+      <td>
+        <a routerLink="./edit/{{ company.id }}">{{
+          'TABLE.EDIT' | translate
+        }}</a>
+      </td>
     </tr>
   </tbody>
 </table>

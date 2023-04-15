@@ -7,9 +7,15 @@ import { NgModule } from '@angular/core';
 import { PasswordComponent } from './password/password.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, AccountRoutingModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    AccountRoutingModule,
+    TranslateModule
+  ],
   declarations: [
     LayoutComponent,
     LoginComponent,

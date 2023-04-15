@@ -1,11 +1,11 @@
-<a routerLink="./add">Add employment</a>
+<a routerLink="./add">{{ 'TABLE.ADD_EMPLOYMENT' | translate }}</a>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Employment name</th>
-      <th scope="col">Max h per day</th>
-      <th scope="col">Max h per week</th>
+      <th scope="col">{{ 'TABLE.ID' | translate }}</th>
+      <th scope="col">{{ 'TABLE.EMPLOYMENT.EMPLOYMENT' | translate }}</th>
+      <th scope="col">{{ 'TABLE.EMPLOYMENT.HOURS_PER_DAY' | translate }}</th>
+      <th scope="col">{{ 'TABLE.EMPLOYMENT.HOURS_PER_WEEK' | translate }}</th>
       <th></th>
     </tr>
   </thead>
@@ -15,7 +15,11 @@
       <td>{{ employment.employment }}</td>
       <td>{{ employment.max_hours_per_day }}</td>
       <td>{{ employment.max_hours_per_week }}</td>
-      <td><a routerLink="./edit/{{ employment.id }}">Edit</a></td>
+      <td>
+        <a routerLink="./edit/{{ employment.id }}">{{
+          'TABLE.EDIT' | translate
+        }}</a>
+      </td>
     </tr>
   </tbody>
 </table>

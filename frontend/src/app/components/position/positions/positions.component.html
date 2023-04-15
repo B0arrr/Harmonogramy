@@ -1,9 +1,9 @@
-<a routerLink="./add">Add position</a>
+<a routerLink="./add">{{ 'TABLE.ADD_POSITION' | translate }}</a>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Position name</th>
+      <th scope="col">{{ 'TABLE.ID' | translate }}</th>
+      <th scope="col">{{ 'TABLE.POSITION.POSITION' | translate }}</th>
       <th></th>
     </tr>
   </thead>
@@ -11,7 +11,11 @@
     <tr *ngFor="let position of positions">
       <th scope="row">{{ position.id }}</th>
       <td>{{ position.position }}</td>
-      <td><a routerLink="./edit/{{ position.id }}">Edit</a></td>
+      <td>
+        <a routerLink="./edit/{{ position.id }}">{{
+          'TABLE.EDIT' | translate
+        }}</a>
+      </td>
     </tr>
   </tbody>
 </table>

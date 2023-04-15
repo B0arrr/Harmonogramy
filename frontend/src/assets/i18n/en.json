@@ -1,0 +1,143 @@
+{
+  "HEADER": {
+    "TITLE": "Harmonogramy",
+    "HOME": "Home",
+    "USER": "User",
+    "COMPANY": "Companies",
+    "EMPLOYMENT": "Employments",
+    "POSITION": "Positions",
+    "USERS": "Users",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout"
+  },
+  "FORM": {
+    "LOGIN": "Login",
+    "REGISTER": "Register",
+    "EDIT": "Edit",
+    "CANCEL": "Cancel",
+    "ACCOUNT": {
+      "LOGIN": {
+        "LOGIN": "Login",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "ERROR": {
+          "EMAIL": "Email is required",
+          "PASSWORD": "Password is required"
+        }
+      },
+      "REGISTER": {
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "ERROR": {
+          "FIRST_NAME": "First Name is required",
+          "LAST_NAME": "Last Name is required",
+          "EMAIL_REQUIRED": "Email is required",
+          "EMAIL_INCORRECT": "Email is incorrect",
+          "PASSWORD_REQUIRED": "Password is required",
+          "PASSWORD_MIN_LEN": "Password must be at least 8 characters"
+        }
+      },
+      "EDIT": {
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "EMAIL": "Email",
+        "ERROR": {
+          "FIRST_NAME": "First name is required",
+          "LAST_NAME": "Last name is required",
+          "EMAIL_REQUIRED": "Email is required",
+          "EMAIL_INCORRECT": "Email is incorrect"
+        },
+        "PASSWORD": {
+          "CHANGE": "Change password",
+          "CURRENT_PASSWORD": "Current Password",
+          "NEW_PASSWORD": "New Password",
+          "REPEAT_PASSWORD": "Repeat Password",
+          "ERROR": {
+            "PASSWORD": "Password is required",
+            "NEW_PASSWORD": "New password is required",
+            "PASSWORD_TOO_SHORT": "Password is too short"
+          }
+        }
+      }
+    },
+    "COMPANY": {
+      "COMPANY": "Company",
+      "EDIT": "Edit company",
+      "ADD": "Add company",
+      "ERROR": {
+        "COMPANY": "Company is required"
+      }
+    },
+    "EMPLOYMENT": {
+      "EMPLOYMENT": "Employment",
+      "HOURS_PER_DAY": "Hours per day",
+      "HOURS_PER_WEEK": "Hours per week",
+      "EDIT": "Edit employment",
+      "ADD": "Add employment",
+      "ERROR": {
+        "EMPLOYMENT": "Employment is required",
+        "HOURS_PER_DAY": "Hours per day is required",
+        "HOURS_PER_WEEK": "Hours per week is required"
+      }
+    },
+    "POSITION": {
+      "POSITION": "Position",
+      "EDIT": "Edit position",
+      "ADD": "Add position",
+      "ERROR": {
+        "POSITION": "Position is required"
+      }
+    },
+    "USER": {
+      "EMPLOYED": "Employed",
+      "DATE_OF_FIRED": "Date of fired",
+      "COMPANY": "Company",
+      "EMPLOYMENT": "Employment",
+      "POSITION": "Position",
+      "EDIT": "Edit user",
+      "ERROR": {
+        "DATE_OF_FIRED": "Date of fired is required",
+        "COMPANY": "Company is required",
+        "EMPLOYMENT": "Employment is required",
+        "POSITION": "Position is required"
+      },
+      "SELECT": {
+        "YES": "Yes",
+        "NO": "No"
+      }
+    }
+  },
+  "TABLE": {
+    "ID": "Id",
+    "ADD_COMPANY": "Add company",
+    "ADD_EMPLOYMENT": "Add employment",
+    "ADD_POSITION": "Add position",
+    "EDIT": "Edit",
+    "EMPLOYMENT": {
+      "EMPLOYMENT": "Employment name",
+      "HOURS_PER_DAY": "Max h per day",
+      "HOURS_PER_WEEK": "Max h per week"
+    },
+    "POSITION": {
+      "POSITION": "Position name"
+    },
+    "USERS": {
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name",
+      "EMAIL": "Email",
+      "ACTIVATED": "Activated",
+      "EMPLOYED": "Employed",
+      "DATE_OF_EMPLOYMENT": "Date of employment",
+      "DATE_OF_FIRED": "Date of fired",
+      "COMPANY": "Company",
+      "EMPLOYMENT": "Employment",
+      "POSITION": "Position",
+      "ACTIVATE": "Activate"
+    },
+    "COMPANY": {
+      "COMPANY": "Company name"
+    }
+  }
+}

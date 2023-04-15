@@ -1,4 +1,9 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule
+} from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AccountRoutingModule } from './components/account/account-routing.module';
 import { AlertComponent } from './components/alert/alert.component';
 import { AppComponent } from './app.component';
@@ -13,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { NgModule } from '@angular/core';
 import { PositionRoutingModule } from './components/position/position-routing.module';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UserRoutingModule } from './components/user/user-routing.module';
 
 @NgModule({
@@ -31,7 +37,14 @@ import { UserRoutingModule } from './components/user/user-routing.module';
     CompanyRoutingModule,
     EmploymentRoutingModule,
     PositionRoutingModule,
-    UserRoutingModule
+    UserRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -40,3 +53,7 @@ import { UserRoutingModule } from './components/user/user-routing.module';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

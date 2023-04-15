@@ -1,9 +1,11 @@
 <div class="card">
-  <h4 class="card-header">Edit company</h4>
+  <h4 class="card-header">{{ 'FORM.COMPANY.EDIT' | translate }}</h4>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">Company</label>
+        <label class="form-label">{{
+          'FORM.COMPANY.COMPANY' | translate
+        }}</label>
         <input
           type="text"
           formControlName="company"
@@ -11,7 +13,9 @@
           [ngClass]="{ 'is-invalid': submitted && f['company'].errors }"
         />
         <div *ngIf="submitted && f['company'].errors" class="invalid-feedback">
-          <div *ngIf="f['company'].errors['required']">Company is required</div>
+          <div *ngIf="f['company'].errors['required']">
+            {{ 'FORM.COMPANY.ERROR.COMPANY' | translate }}
+          </div>
         </div>
       </div>
       <div>
@@ -20,9 +24,11 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm me-1"
           ></span>
-          Edit company
+          {{ 'FORM.COMPANY.EDIT' | translate }}
         </button>
-        <a routerLink="../" class="btn btn-link">Cancel</a>
+        <a routerLink="../" class="btn btn-link">{{
+          'FORM.CANCEL' | translate
+        }}</a>
       </div>
     </form>
   </div>

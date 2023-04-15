@@ -1,9 +1,11 @@
 <div class="card">
-  <h4 class="card-header">Edit employment</h4>
+  <h4 class="card-header">{{ 'FORM.EMPLOYMENT.EDIT' | translate }}</h4>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label class="form-label">Employment</label>
+        <label class="form-label">{{
+          'FORM.EMPLOYMENT.EMPLOYMENT' | translate
+        }}</label>
         <input
           type="text"
           formControlName="employment"
@@ -15,7 +17,7 @@
           class="invalid-feedback"
         >
           <div *ngIf="f['employment'].errors['required']">
-            Employment is required
+            {{ 'FORM.EMPLOYMENT.ERROR.EMPLOYMENT' | translate }}
           </div>
         </div>
       </div>
@@ -57,9 +59,11 @@
             *ngIf="loading"
             class="spinner-border spinner-border-sm me-1"
           ></span>
-          Edit employment
+          {{ 'FORM.EMPLOYMENT.EDIT' | translate }}
         </button>
-        <a routerLink="../" class="btn btn-link">Cancel</a>
+        <a routerLink="../" class="btn btn-link">{{
+          'FORM.CANCEL' | translate
+        }}</a>
       </div>
     </form>
   </div>
