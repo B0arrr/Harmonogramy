@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <div class="mb-3">
+      <div class="mb-3" *ngIf="userLoggedIn?.is_superuser">
         <label class="form-label">{{ 'FORM.USER.COMPANY' | translate }}</label>
         <select
           formControlName="company_id"

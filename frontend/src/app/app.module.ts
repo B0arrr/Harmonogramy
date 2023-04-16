@@ -20,6 +20,7 @@ import { NgModule } from '@angular/core';
 import { PositionRoutingModule } from './components/position/position-routing.module';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UserRoutingModule } from './components/user/user-routing.module';
+import {ScheduleComponent} from "./components/schedule/schedule.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UserRoutingModule } from './components/user/user-routing.module';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    AlertComponent
+    AlertComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,

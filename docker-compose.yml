@@ -10,7 +10,7 @@ services:
         ports:
             - 5000:5000
         command:
-            sh ./startup.sh
+            sh -c 'alembic revision --autogenerate -m "init" && alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 5000'
         depends_on:
             -   db
         networks:

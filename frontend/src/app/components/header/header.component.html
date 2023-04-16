@@ -1,26 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/home">{{
-    'HEADER.TITLE' | translate
-  }}</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" routerLink="/home">
+    {{ company }} {{ 'HEADER.TITLE' | translate }}
+  </a>
 
   <div
     class="collapse navbar-collapse justify-content-between"
     id="navbarSupportedContent"
   >
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li *ngIf="!user" class="nav-item">
         <a class="nav-link" routerLink="/">{{ 'HEADER.HOME' | translate }}</a>
+      </li>
+      <li *ngIf="user" class="nav-item d-flex">
+        <a class="nav-link" routerLink="/">{{ 'HEADER.HOME' | translate }}</a>
+        <a class="nav-link" routerLink="/schedule">{{ 'HEADER.SCHEDULE' | translate }}</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -31,18 +24,18 @@
       </li>
       <li *ngIf="user" class="nav-item d-flex">
         <a class="nav-link" routerLink="/account/edit"
-          >{{ 'HEADER.USER' | translate }} {{ user }}</a
+          >{{ 'HEADER.USER' | translate }} {{ user?.first_name?.toString() }}</a
         >
-        <a class="nav-link" routerLink="/company">{{
+        <a class="nav-link" routerLink="/company" *ngIf="user?.is_superuser && user?.position_id == 1">{{
           'HEADER.COMPANY' | translate
         }}</a>
-        <a class="nav-link" routerLink="/employment">{{
+        <a class="nav-link" routerLink="/employment" *ngIf="user?.position_id == 1">{{
           'HEADER.EMPLOYMENT' | translate
         }}</a>
-        <a class="nav-link" routerLink="/position">{{
+        <a class="nav-link" routerLink="/position" *ngIf="user?.position_id == 1">{{
           'HEADER.POSITION' | translate
         }}</a>
-        <a class="nav-link" routerLink="/user">{{
+        <a class="nav-link" routerLink="/user" *ngIf="user?.position_id == 1">{{
           'HEADER.USERS' | translate
         }}</a>
         <button class="btn btn-link nav-item nav-link" (click)="logout()">

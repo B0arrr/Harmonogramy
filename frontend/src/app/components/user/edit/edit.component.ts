@@ -10,6 +10,7 @@ import { Position } from '../../../models/position';
 import { PositionService } from '../../../services/position.service';
 import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
+import {AccountService} from "../../../services/account.service";
 
 @Component({
   selector: 'app-edit',
@@ -25,6 +26,7 @@ export class EditComponent implements OnInit {
   positions?: Position[] | null;
   id?: number;
   user?: User;
+  userLoggedIn?: User | null;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -34,7 +36,8 @@ export class EditComponent implements OnInit {
     private companyService: CompanyService,
     private employmentService: EmploymentService,
     private positionService: PositionService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private accountService: AccountService
   ) {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.userService
@@ -49,6 +52,8 @@ export class EditComponent implements OnInit {
     this.positionService
       .getAllPositions()
       .subscribe((positions) => (this.positions = positions));
+    this.accountService.user
+      .subscribe((user) => this.userLoggedIn = user);
   }
 
   ngOnInit() {
@@ -59,6 +64,9 @@ export class EditComponent implements OnInit {
       employment_id: ['', Validators.required],
       position_id: ['', Validators.required]
     });
+    if (this.user?.is_superuser) {
+      this.form.controls['company_id'].setValue(1);
+    }
   }
 
   get f(): any {
