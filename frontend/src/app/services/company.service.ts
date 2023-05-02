@@ -1,7 +1,7 @@
+import { Observable, map } from 'rxjs';
 import { Company } from '../models/company';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {map, Observable} from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
@@ -25,9 +25,9 @@ export class CompanyService {
   }
 
   getCompanyName(id: number): Observable<string | undefined> {
-    return this.http.get<Company>(
-      `${environment.apiUrl}/company/get_company_by_id/${id}`
-    ).pipe(map(company_in_db => company_in_db.company));
+    return this.http
+      .get<Company>(`${environment.apiUrl}/company/get_company_by_id/${id}`)
+      .pipe(map((company_in_db) => company_in_db.company));
   }
 
   getAllCompanies(): Observable<Company[]> {

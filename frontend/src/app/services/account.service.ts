@@ -58,6 +58,9 @@ export class AccountService {
             )
             .subscribe((user: User) => {
               localStorage.setItem('user', JSON.stringify(user));
+              if (user.company_id) {
+                localStorage.setItem('company', user.company_id.toString());
+              }
               this.userSubject.next(user);
               return user;
             });

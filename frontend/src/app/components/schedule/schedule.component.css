@@ -1,0 +1,19 @@
+#scroll,
+#list {
+  background-color: #353535;
+}
+
+.item {
+  display: block;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  margin: 10px 10px 10px 10px;
+}
+
+.dx-draggable-source {
+  opacity: 0.5;
+}
+
+.dx-draggable-dragging > * {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.2);
+}

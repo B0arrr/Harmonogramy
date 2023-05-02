@@ -11,6 +11,8 @@ class ScheduleUserBase(BaseModel):
 
 
 class ScheduleUserIn(BaseModel):
+    schedule_id: int
+    user_id: int
     shift_start: datetime
     shift_end: datetime
 

@@ -28,14 +28,6 @@
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['date_of_fired'].errors }"
         />
-        <div
-          *ngIf="submitted && f['date_of_fired'].errors"
-          class="invalid-feedback"
-        >
-          <div *ngIf="f['date_of_fired'].errors['required']">
-            {{ 'FORM.USER.ERROR.DATE_OF_FIRED' | translate }}
-          </div>
-        </div>
       </div>
       <div class="mb-3" *ngIf="userLoggedIn?.is_superuser">
         <label class="form-label">{{ 'FORM.USER.COMPANY' | translate }}</label>

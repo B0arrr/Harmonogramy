@@ -26,6 +26,12 @@ export class UserService {
     return this.http.get<User[]>(`${environment.apiUrl}/user/get_all_users`);
   }
 
+  getAllUsersFromCompanyById(id: number): Observable<User[]> {
+    return this.http.get<User[]>(
+      `${environment.apiUrl}/user/get_all_users_from_company_by_id/${id}`
+    );
+  }
+
   updateUser(params: any): Observable<User> {
     return this.http.put<User>(
       `${environment.apiUrl}/user/update_user_by_id/${params.id}`,

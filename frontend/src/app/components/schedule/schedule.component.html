@@ -1,1 +1,48 @@
-<p>schedule works!</p>
+<div class="mb-1 row justify-content-end">
+  <button type="button" (click)="save()" class="btn btn-dark w-25">Save</button>
+</div>
+<div class="row">
+  <div class="col-2 pr-2">
+    <dx-scroll-view id="scroll">
+      <dx-draggable
+        id="list"
+        data="dropArea"
+        [group]="draggingGroupName"
+        (onDragStart)="onListDragStart($event)"
+      >
+        <dx-draggable
+          class="item dx-card dx-theme-text-color dx-theme-background-color"
+          [clone]="true"
+          [group]="draggingGroupName"
+          [data]="user"
+          (onDragStart)="onItemDragStart($event)"
+          (onDragEnd)="onItemDragEnd($event)"
+          *ngFor="let user of usersList"
+        >
+          {{ user.text }}
+        </dx-draggable>
+      </dx-draggable>
+    </dx-scroll-view>
+  </div>
+
+  <dx-scheduler
+    [timeZone]="timeZone"
+    id="scheduler"
+    class="col-10 m-0 p-0"
+    allDayPanelMode="hidden"
+    [views]="['day', 'week', 'workWeek', 'month']"
+    [dataSource]="appointments"
+    [currentDate]="currentDate"
+    [height]="750"
+    [editing]="true"
+    (onAppointmentFormOpening)="onAppointmentFormOpening($event)"
+    (onAppointmentUpdating)="onAppointmentUpdating($event)"
+  >
+    <dxo-appointment-dragging
+      [group]="draggingGroupName"
+      [onRemove]="onAppointmentRemove"
+      [onAdd]="onAppointmentAdd"
+    >
+    </dxo-appointment-dragging>
+  </dx-scheduler>
+</div>

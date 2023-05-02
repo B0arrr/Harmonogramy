@@ -32,9 +32,9 @@ class UserUpdate(BaseModel):
     is_employed: bool
     date_of_employment: date
     date_of_fired: Optional[date]
-    company_id: int
-    employment_id: int
-    position_id: int
+    company_id: Optional[int]
+    employment_id: Optional[int]
+    position_id: Optional[int]
 
 
 class UserUpdatePassword(BaseModel):

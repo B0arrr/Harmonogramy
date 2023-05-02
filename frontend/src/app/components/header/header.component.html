@@ -13,7 +13,9 @@
       </li>
       <li *ngIf="user" class="nav-item d-flex">
         <a class="nav-link" routerLink="/">{{ 'HEADER.HOME' | translate }}</a>
-        <a class="nav-link" routerLink="/schedule">{{ 'HEADER.SCHEDULE' | translate }}</a>
+        <a class="nav-link" routerLink="/schedule">{{
+          'HEADER.SCHEDULE' | translate
+        }}</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -26,18 +28,30 @@
         <a class="nav-link" routerLink="/account/edit"
           >{{ 'HEADER.USER' | translate }} {{ user?.first_name?.toString() }}</a
         >
-        <a class="nav-link" routerLink="/company" *ngIf="user?.is_superuser && user?.position_id == 1">{{
-          'HEADER.COMPANY' | translate
-        }}</a>
-        <a class="nav-link" routerLink="/employment" *ngIf="user?.position_id == 1">{{
-          'HEADER.EMPLOYMENT' | translate
-        }}</a>
-        <a class="nav-link" routerLink="/position" *ngIf="user?.position_id == 1">{{
-          'HEADER.POSITION' | translate
-        }}</a>
-        <a class="nav-link" routerLink="/user" *ngIf="user?.position_id == 1">{{
-          'HEADER.USERS' | translate
-        }}</a>
+        <a
+          class="nav-link"
+          routerLink="/company"
+          *ngIf="user?.is_superuser && user?.position_id === 1"
+          >{{ 'HEADER.COMPANY' | translate }}</a
+        >
+        <a
+          class="nav-link"
+          routerLink="/employment"
+          *ngIf="user?.position_id === 1"
+          >{{ 'HEADER.EMPLOYMENT' | translate }}</a
+        >
+        <a
+          class="nav-link"
+          routerLink="/position"
+          *ngIf="user?.position_id === 1"
+          >{{ 'HEADER.POSITION' | translate }}</a
+        >
+        <a
+          class="nav-link"
+          routerLink="/user"
+          *ngIf="user?.position_id === 1"
+          >{{ 'HEADER.USERS' | translate }}</a
+        >
         <button class="btn btn-link nav-item nav-link" (click)="logout()">
           {{ 'HEADER.LOGOUT' | translate }}
         </button>

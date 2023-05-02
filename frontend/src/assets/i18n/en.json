@@ -140,5 +140,10 @@
     "COMPANY": {
       "COMPANY": "Company name"
     }
+  },
+  "ALERT": {
+    "ERROR": {
+      "TIME": "Working time exceeded"
+    }
   }
 }

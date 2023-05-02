@@ -1,4 +1,9 @@
 import {
+  DxDraggableModule,
+  DxSchedulerModule,
+  DxScrollViewModule
+} from 'devextreme-angular';
+import {
   HTTP_INTERCEPTORS,
   HttpClient,
   HttpClientModule
@@ -10,6 +15,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { CompanyRoutingModule } from './components/company/company-routing.module';
+import { DatePipe } from '@angular/common';
 import { EmploymentRoutingModule } from './components/employment/employment-routing.module';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { FooterComponent } from './components/footer/footer.component';
@@ -18,9 +24,9 @@ import { HomeComponent } from './components/home/home.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { NgModule } from '@angular/core';
 import { PositionRoutingModule } from './components/position/position-routing.module';
+import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UserRoutingModule } from './components/user/user-routing.module';
-import {ScheduleComponent} from "./components/schedule/schedule.component";
 
 @NgModule({
   declarations: [
@@ -46,11 +52,15 @@ import {ScheduleComponent} from "./components/schedule/schedule.component";
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    DxSchedulerModule,
+    DxScrollViewModule,
+    DxDraggableModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

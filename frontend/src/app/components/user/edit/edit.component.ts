@@ -1,6 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, first } from 'rxjs';
+import { AccountService } from '../../../services/account.service';
 import { AlertService } from '../../../services/alert.service';
 import { Company } from '../../../models/company';
 import { CompanyService } from '../../../services/company.service';
@@ -10,7 +12,6 @@ import { Position } from '../../../models/position';
 import { PositionService } from '../../../services/position.service';
 import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
-import {AccountService} from "../../../services/account.service";
 
 @Component({
   selector: 'app-edit',
@@ -52,19 +53,18 @@ export class EditComponent implements OnInit {
     this.positionService
       .getAllPositions()
       .subscribe((positions) => (this.positions = positions));
-    this.accountService.user
-      .subscribe((user) => this.userLoggedIn = user);
+    this.accountService.user.subscribe((user) => (this.userLoggedIn = user));
   }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       is_employed: ['', Validators.required],
-      date_of_fired: ['', Validators.required],
+      date_of_fired: [''],
       company_id: ['', Validators.required],
       employment_id: ['', Validators.required],
       position_id: ['', Validators.required]
     });
-    if (this.user?.is_superuser) {
+    if (!this.user?.is_superuser) {
       this.form.controls['company_id'].setValue(1);
     }
   }
@@ -83,30 +83,44 @@ export class EditComponent implements OnInit {
     }
 
     const is_employed = this.f['is_employed'].value;
-    const date_of_fired = this.f['date_of_fired'].value;
+    let date_of_fired = this.f['date_of_fired'].value;
     const company_id = this.f['company_id'].value;
     const employment_id = this.f['employment_id'].value;
     const position_id = this.f['position_id'].value;
+    date_of_fired == '' ? (date_of_fired = null) : date_of_fired;
 
     this.loading = true;
-    this.userService
-      .updateUser({
+    let update: Observable<User>;
+    if (this.user?.id == this.userLoggedIn?.id) {
+      update = this.accountService
+        .update(this.user?.id as number, {
+          ...this.user,
+          is_employed,
+          date_of_fired,
+          company_id,
+          employment_id,
+          position_id
+        })
+        .pipe(first());
+    } else {
+      update = this.userService.updateUser({
         ...this.user,
         is_employed,
         date_of_fired,
         company_id,
         employment_id,
         position_id
-      })
-      .subscribe({
-        next: () => {
-          this.alertService.success('User updated');
-          this.loading = false;
-        },
-        error: (error) => {
-          this.alertService.error(error);
-          this.loading = false;
-        }
       });
+    }
+    update.subscribe({
+      next: () => {
+        this.alertService.success('User updated');
+        this.loading = false;
+      },
+      error: (error) => {
+        this.alertService.error(error);
+        this.loading = false;
+      }
+    });
   }
 }
