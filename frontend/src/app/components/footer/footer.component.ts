@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  constructor() {}
+  year: string | undefined;
+  constructor(private datePipe: DatePipe) {
+    this.year = this.datePipe.transform(new Date(), 'yyyy')?.toString();
+  }
 }

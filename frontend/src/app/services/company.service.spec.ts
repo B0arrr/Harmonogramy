@@ -49,6 +49,20 @@ describe('CompanyService', () => {
     });
   });
 
+  describe('getCompanyName', () => {
+    it('should get company name', () => {
+      fakeHttpClient.get.and.returnValue(
+        of({
+          id: 1,
+          company: 'test'
+        })
+      );
+      service.getCompanyName(1).subscribe((x) => {
+        expect(x).toEqual('test');
+      });
+    });
+  });
+
   describe('getAllCompanies', () => {
     it('should get all companies', () => {
       fakeHttpClient.get.and.returnValue(of([]));

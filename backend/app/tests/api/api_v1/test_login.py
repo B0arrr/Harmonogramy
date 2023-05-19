@@ -2,7 +2,6 @@ from typing import Dict
 
 from fastapi.testclient import TestClient
 
-from app import crud
 from app.core.config import settings
 
 
@@ -43,7 +42,7 @@ def test_check_password(
     result = client.post(
         f"{settings.API_V1_STR}/check_password",
         headers=superuser_token_headers,
-        data=data
+        json=data
     )
     assert result.status_code == 200
     content = result.json()

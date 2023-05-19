@@ -7,6 +7,7 @@ import createSpyObj = jasmine.createSpyObj;
 import { AlertService } from '../../../services/alert.service';
 import { PositionService } from '../../../services/position.service';
 import { of, throwError } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AddPositionComponent', () => {
   let component: AddComponent;
@@ -22,6 +23,7 @@ describe('AddPositionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         HttpClient,

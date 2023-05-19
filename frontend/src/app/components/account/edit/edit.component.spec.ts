@@ -7,6 +7,7 @@ import { of, throwError } from 'rxjs';
 import createSpyObj = jasmine.createSpyObj;
 import { AlertService } from '../../../services/alert.service';
 import { AccountService } from '../../../services/account.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('EditAccountComponent', () => {
   let component: EditComponent;
@@ -22,6 +23,7 @@ describe('EditAccountComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         HttpClient,

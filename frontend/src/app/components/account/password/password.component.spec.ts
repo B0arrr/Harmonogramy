@@ -7,6 +7,7 @@ import createSpyObj = jasmine.createSpyObj;
 import { AlertService } from '../../../services/alert.service';
 import { AccountService } from '../../../services/account.service';
 import { of, throwError } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('PasswordComponent', () => {
   let component: PasswordComponent;
@@ -26,6 +27,7 @@ describe('PasswordComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PasswordComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         HttpClient,

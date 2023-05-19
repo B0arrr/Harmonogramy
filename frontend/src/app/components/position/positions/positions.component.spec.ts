@@ -5,6 +5,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import createSpyObj = jasmine.createSpyObj;
 import { PositionService } from '../../../services/position.service';
 import { of } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('PositionsComponent', () => {
   let component: PositionsComponent;
@@ -17,6 +18,7 @@ describe('PositionsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PositionsComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [
         HttpClient,
         HttpHandler,

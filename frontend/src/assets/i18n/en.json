@@ -11,6 +11,15 @@
     "LOGIN": "Login",
     "LOGOUT": "Logout"
   },
+  "HOME": {
+    "WELCOME": "Welcome to the work time schedules creating site",
+    "SCHEDULE": "Go to scheduler",
+    "REGISTER": "Create account",
+    "LOGIN": "Log in"
+  },
+  "FOOTER": {
+    "TITLE": "Harmonogramy"
+  },
   "FORM": {
     "LOGIN": "Login",
     "REGISTER": "Register",
@@ -109,6 +118,9 @@
         "NO": "No"
       }
     }
+  },
+  "SCHEDULE": {
+    "SAVE": "Save"
   },
   "TABLE": {
     "ID": "Id",

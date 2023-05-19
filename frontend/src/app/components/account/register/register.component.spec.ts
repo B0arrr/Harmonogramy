@@ -8,6 +8,7 @@ import createSpyObj = jasmine.createSpyObj;
 import { AccountService } from '../../../services/account.service';
 import { AlertService } from '../../../services/alert.service';
 import { of, throwError } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -34,6 +35,7 @@ describe('RegisterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         {

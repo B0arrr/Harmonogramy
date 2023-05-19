@@ -73,7 +73,7 @@ describe('AccountService', () => {
   });
 
   describe('login', () => {
-    it('should get user and token from api', function () {
+    it('should get user and token from api', () => {
       const token = {
         access_token: 'test',
         token_type: 'bearer'
@@ -146,14 +146,14 @@ describe('AccountService', () => {
   });
 
   describe('updatePassword', () => {
-    it('should update user', () => {
+    it('should update user password', () => {
       const user = JSON.parse(localStorage.getItem('user') as string);
       const params = {
         email: 'test@test.pl',
         password: 'test2'
       };
       fakeHttpClient.put.and.returnValue(of({ ...user, ...params }));
-      service.update(user.id, params).subscribe((x) => {
+      service.updatePassword(user.id, params).subscribe((x) => {
         const updatedUser = { ...user, ...params };
         expect(x).toEqual(updatedUser);
         expect(service.userValue).toEqual(updatedUser);

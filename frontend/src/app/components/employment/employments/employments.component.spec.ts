@@ -5,6 +5,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import createSpyObj = jasmine.createSpyObj;
 import { EmploymentService } from '../../../services/employment.service';
 import { of } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('EmploymentsComponent', () => {
   let component: EmploymentsComponent;
@@ -17,6 +18,7 @@ describe('EmploymentsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EmploymentsComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [
         HttpClient,
         HttpHandler,

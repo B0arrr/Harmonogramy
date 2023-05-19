@@ -149,8 +149,10 @@ export class ScheduleComponent {
       employment == undefined ||
       employment.max_hours_per_day == undefined ||
       employment.max_hours_per_week == undefined
-    )
+    ) {
+      e.cancel = true;
       return;
+    }
     if (
       hoursInDay > employment.max_hours_per_day ||
       hoursInWeek > employment.max_hours_per_week

@@ -11,6 +11,9 @@ import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company.service';
 import { EmploymentService } from '../../../services/employment.service';
 import { PositionService } from '../../../services/position.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { User } from '../../../models/user';
+import { AccountService } from '../../../services/account.service';
 
 describe('EditUserComponent', () => {
   let component: EditComponent;
@@ -34,6 +37,7 @@ describe('EditUserComponent', () => {
   const fakePositionService = createSpyObj('PositionService', [
     'getAllPositions'
   ]);
+  const fakeAccountService = createSpyObj('AccountService', ['update']);
 
   const fakeActivatedRoute = {
     snapshot: {
@@ -46,6 +50,7 @@ describe('EditUserComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         HttpClient,
@@ -73,6 +78,10 @@ describe('EditUserComponent', () => {
         {
           provide: PositionService,
           useValue: fakePositionService
+        },
+        {
+          provide: AccountService,
+          useValue: fakeAccountService
         }
       ]
     }).compileComponents();
@@ -81,6 +90,8 @@ describe('EditUserComponent', () => {
     fakeCompanyService.getAllCompanies.and.returnValue(of([]));
     fakeEmploymentService.getAllEmployments.and.returnValue(of([]));
     fakePositionService.getAllPositions.and.returnValue(of([]));
+    fakeAccountService.user = of(null);
+    fakeAccountService.update.and.returnValue(of({}));
 
     fixture = TestBed.createComponent(EditComponent);
     component = fixture.componentInstance;
@@ -114,6 +125,10 @@ describe('EditUserComponent', () => {
         employment_id: new FormControl('test'),
         position_id: new FormControl('test')
       });
+      component.user = new User();
+      component.userLoggedIn = new User();
+      component.user.id = 1;
+      component.userLoggedIn.id = 2;
     });
 
     it('should update user', () => {
@@ -125,6 +140,17 @@ describe('EditUserComponent', () => {
       expect(fakeUserService.updateUser).toHaveBeenCalled();
     });
 
+    it('should update logged in user', () => {
+      fakeUserService.updateUser.and.returnValue(of({}));
+      component.userLoggedIn = new User();
+      component.userLoggedIn.id = 1;
+      component.onSubmit();
+      expect(component.submitted).toBeTrue();
+      expect(fakeAlertService.clear).toHaveBeenCalled();
+      expect(fakeAlertService.success).toHaveBeenCalled();
+      expect(fakeAccountService.update).toHaveBeenCalled();
+    });
+
     it('should show error', () => {
       fakeUserService.updateUser.and.returnValue(
         throwError(() => new Error('dsad'))
@@ -134,6 +160,19 @@ describe('EditUserComponent', () => {
       expect(fakeAlertService.clear).toHaveBeenCalled();
       expect(fakeAlertService.error).toHaveBeenCalled();
       expect(fakeUserService.updateUser).toHaveBeenCalled();
+    });
+
+    it('should show error while edit logged user', () => {
+      fakeAccountService.update.and.returnValue(
+        throwError(() => new Error('dsad'))
+      );
+      component.userLoggedIn = new User();
+      component.userLoggedIn.id = 1;
+      component.onSubmit();
+      expect(component.submitted).toBeTrue();
+      expect(fakeAlertService.clear).toHaveBeenCalled();
+      expect(fakeAlertService.error).toHaveBeenCalled();
+      expect(fakeAccountService.update).toHaveBeenCalled();
     });
   });
 });

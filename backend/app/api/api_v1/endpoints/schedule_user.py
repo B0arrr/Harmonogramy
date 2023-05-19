@@ -109,7 +109,7 @@ def update_schedule_for_user_by_id(
         )
     schedule_user_updated = schemas.ScheduleUserUpdate(
         user_id=schedule_user_in.user_id,
-        schedule_id=schedule_user_in.user_id,
+        schedule_id=schedule_user_in.schedule_id,
         shift_start=schedule_user_in.shift_start,
         shift_end=schedule_user_in.shift_end
     )
